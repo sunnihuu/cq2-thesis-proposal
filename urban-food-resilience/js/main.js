@@ -1,88 +1,72 @@
 /*
-INTERACTION: CMYK Halftone Pattern Background
+INTERACTION: CMYK Halftone Pattern Background with Animation
 
 Core functionality:
 - CMYK color separation
 - Halftone dot pattern generation
-- Random color palette generation
-- Motion preferences respect
+- Mouse-responsive breathing animation
+- Touch support
 */
 
 const canvas = document.getElementById("bg");
 const ctx = canvas && canvas.getContext("2d");
 
-// Respect user motion preferences
-let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const btn = document.getElementById("motionToggle");
-if (btn) {
-  btn.addEventListener("click", () => {
-    reduceMotion = !reduceMotion;
-    btn.textContent = reduceMotion ? "Enable Motion" : "Reduce Motion";
-  });
-}
-
-// CMYK colors
-let cyan, magenta, yellow, black;
-let initialized = false;
+// Animation state
 let mouseX = 0;
 let mouseY = 0;
 let time = 0;
 let dots = [];
+let initialized = false;
+
+// CMYK colors
+let cyan, magenta, yellow, black;
+
+// Motion preferences
+let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionBtn = document.getElementById("motionToggle");
+if (motionBtn) {
+  motionBtn.addEventListener("click", () => {
+    reduceMotion = !reduceMotion;
+    motionBtn.textContent = reduceMotion ? "Enable Motion" : "Reduce Motion";
+  });
+}
 
 /**
- * Helper: Convert RGB to CMYK
+ * Convert RGB to CMYK color space
  */
 function RGBtoCMYK(r, g, b) {
-  let r1 = r / 255;
-  let g1 = g / 255;
-  let b1 = b / 255;
-  let c, m, y, k;
-  k = Math.min(1 - r1, 1 - g1, 1 - b1);
-  if (k == 1) {
-    c = m = y = 0;
-  } else {
-    c = (1 - r1 - k) / (1 - k);
-    m = (1 - g1 - k) / (1 - k);
-    y = (1 - b1 - k) / (1 - k);
+  const r1 = r / 255;
+  const g1 = g / 255;
+  const b1 = b / 255;
+  
+  const k = Math.min(1 - r1, 1 - g1, 1 - b1);
+  
+  if (k === 1) {
+    return [0, 0, 0, 1];
   }
+  
+  const c = (1 - r1 - k) / (1 - k);
+  const m = (1 - g1 - k) / (1 - k);
+  const y = (1 - b1 - k) / (1 - k);
+  
   return [c, m, y, k];
 }
 
 /**
- * Helper: Convert CMYK values to spot sizes
+ * Convert CMYK values to halftone dot sizes
  */
 function CMYKtoSpotSize(c, m, y, k, spotSize) {
-  let cs = c * spotSize;
-  let ms = m * spotSize;
-  let ys = y * spotSize;
-  let ks = k * spotSize;
-  return [cs, ms, ys, ks];
+  return [c * spotSize, m * spotSize, y * spotSize, k * spotSize];
 }
 
 /**
- * Create random color palette with curated ranges
+ * Generate random color palette with harmonious ranges
  */
 function createColorPalette() {
-  // Use more refined color ranges for better aesthetic
-  const r1 = 100 + Math.random() * 155;
-  const g1 = 150 + Math.random() * 105;
-  const b1 = 180 + Math.random() * 75;
-  cyan = `rgb(${r1}, ${g1}, ${b1})`;
-  
-  const r2 = 180 + Math.random() * 75;
-  const g2 = 100 + Math.random() * 100;
-  const b2 = 140 + Math.random() * 115;
-  magenta = `rgb(${r2}, ${g2}, ${b2})`;
-  
-  const r3 = 200 + Math.random() * 55;
-  const g3 = 180 + Math.random() * 75;
-  const b3 = 80 + Math.random() * 120;
-  yellow = `rgb(${r3}, ${g3}, ${b3})`;
-  
-  const r4 = 40 + Math.random() * 100;
-  const g4 = 50 + Math.random() * 100;
-  const b4 = 30 + Math.random() * 90;
-  black = `rgb(${r4}, ${g4}, ${b4})`;
+  cyan = `rgb(${60 + Math.random() * 100}, ${160 + Math.random() * 95}, ${180 + Math.random() * 75})`;
+  magenta = `rgb(${180 + Math.random() * 75}, ${60 + Math.random() * 80}, ${140 + Math.random() * 115})`;
+  yellow = `rgb(${200 + Math.random() * 55}, ${160 + Math.random() * 95}, ${40 + Math.random() * 80})`;
+  black = `rgb(${50 + Math.random() * 60}, ${60 + Math.random() * 60}, ${45 + Math.random() * 60})`;
 }
 
 /**
@@ -94,14 +78,14 @@ function createBaseGraphics(w, h) {
   tempCanvas.height = h;
   const tempCtx = tempCanvas.getContext('2d');
   
-  // Draw random circles with varied sizes
-  const circleCount = 120;
-  for (let i = 0; i < circleCount; i++) {
-    let radius = 50 + Math.random() * 80; // More size variation
+  // Draw 120 random circles with varying sizes and opacity
+  for (let i = 0; i < 120; i++) {
+    const radius = 50 + Math.random() * 80;
     const r = 100 + Math.random() * 155;
     const g = 120 + Math.random() * 135;
     const b = 140 + Math.random() * 115;
     const alpha = 0.6 + Math.random() * 0.4;
+    
     tempCtx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
     tempCtx.beginPath();
     tempCtx.arc(Math.random() * w, Math.random() * h, radius, 0, Math.PI * 2);
@@ -112,7 +96,7 @@ function createBaseGraphics(w, h) {
 }
 
 /**
- * Initialize halftone pattern
+ * Initialize halftone pattern and dots array
  */
 function initHalftone() {
   if (!canvas || !ctx) return;
@@ -122,124 +106,129 @@ function initHalftone() {
   canvas.width = w;
   canvas.height = h;
   
-  // Create color palette
+  // Generate color scheme
   createColorPalette();
   
-  // Create base graphics
+  // Create source graphic for halftone
   const baseGraphics = createBaseGraphics(w, h);
   const baseCtx = baseGraphics.getContext('2d');
   
-  // Store dot positions and colors for animation
+  // Parameters for halftone generation
+  const diff = 8; // Offset between CMYK dots
+  const spotamp = 15 + Math.random() * 25; // Dot size amplitude
+  const gridSpacing = 18; // Grid sampling distance
+  
+  // Clear dots array and populate with new pattern
   dots = [];
-  const diff = 8;
-  const spotamp = 15 + Math.random() * 25;
-  const gridSpacing = 18;
   
   for (let Y = 50; Y < h - 50; Y += gridSpacing) {
     for (let X = 50; X < w - 50; X += gridSpacing) {
+      // Sample color from base graphics
       const imageData = baseCtx.getImageData(X, Y, 1, 1);
       const [r, g, b] = imageData.data;
-      const thisCMYK = RGBtoCMYK(r, g, b);
-      const spotSizes = CMYKtoSpotSize(...thisCMYK, spotamp);
       
-      // Store each CMYK dot with its properties
-      dots.push({
-        x: X,
-        y: Y - diff,
-        baseSize: spotSizes[3],
-        color: black,
-        offset: Math.random() * Math.PI * 2
-      });
-      dots.push({
-        x: X - diff,
-        y: Y,
-        baseSize: spotSizes[0],
-        color: cyan,
-        offset: Math.random() * Math.PI * 2
-      });
-      dots.push({
-        x: X,
-        y: Y + diff,
-        baseSize: spotSizes[1],
-        color: magenta,
-        offset: Math.random() * Math.PI * 2
-      });
-      dots.push({
-        x: X + diff,
-        y: Y,
-        baseSize: spotSizes[2],
-        color: yellow,
-        offset: Math.random() * Math.PI * 2
+      // Convert to CMYK and calculate dot sizes
+      const cmyk = RGBtoCMYK(r, g, b);
+      const spotSizes = CMYKtoSpotSize(...cmyk, spotamp);
+      
+      // Store CMYK dots (K, C, M, Y order for proper layering)
+      const dotPositions = [
+        { x: X, y: Y - diff, size: spotSizes[3], color: black },
+        { x: X - diff, y: Y, size: spotSizes[0], color: cyan },
+        { x: X, y: Y + diff, size: spotSizes[1], color: magenta },
+        { x: X + diff, y: Y, size: spotSizes[2], color: yellow }
+      ];
+      
+      dotPositions.forEach(pos => {
+        dots.push({
+          x: pos.x,
+          y: pos.y,
+          baseSize: pos.size,
+          color: pos.color,
+          phase: Math.random() * Math.PI * 2
+        });
       });
     }
   }
   
   initialized = true;
-  animate();
 }
 
 /**
- * Animation loop
+ * Animation loop with mouse interaction
  */
 function animate() {
   if (!canvas || !ctx || dots.length === 0) return;
   
-  const w = window.innerWidth;
-  const h = window.innerHeight;
+  // Clear canvas
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
   
-  // Background
-  ctx.fillStyle = '#e6e6e6';
-  ctx.fillRect(0, 0, w, h);
-  
-  ctx.globalCompositeOperation = 'multiply';
+  ctx.globalCompositeOperation = 'screen';
   
   time += 0.01;
   
-  // Draw animated dots
-  for (let i = 0; i < dots.length; i++) {
-    const dot = dots[i];
+  // Draw each dot with animation
+  dots.forEach(dot => {
+    // Calculate mouse influence
+    const dx = mouseX - dot.x;
+    const dy = mouseY - dot.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const interactionRadius = 200;
     
-    // Calculate distance from mouse
-// Initialize
-if (canvas) {
-  window.addEventListener('resize', handleResize);
-  window.addEventListener('mousemove', handleMouseMove);
-  window.addEventListener('touchmove', handleTouchMove);
-  draw();
-}   
-    // Mouse interaction: scale and displacement
+    // Mouse interaction parameters
     let scale = 1;
     let offsetX = 0;
     let offsetY = 0;
     
-    if (dist < maxDist) {
-      const influence = 1 - dist / maxDist;
-      scale = 1 + influence * 0.8; // Grow when mouse is near
-      offsetX = (dx / dist) * influence * 15; // Push away from mouse
-      offsetY = (dy / dist) * influence * 15;
+    if (distance < interactionRadius) {
+      const influence = 1 - distance / interactionRadius;
+      scale = 1 + influence * 0.8; // Amplify near mouse
+      offsetX = (distance > 0 ? (dx / distance) * influence * 15 : 0); // Repulsion
+      offsetY = (distance > 0 ? (dy / distance) * influence * 15 : 0);
     }
     
-    // Subtle breathing animation
-    const breathe = Math.sin(time + dot.offset) * 0.15 + 1;
+    // Breathing animation with phase offset
+    const breathing = Math.sin(time + dot.phase) * 0.15 + 1;
     
     // Calculate final size
-    const finalSize = dot.baseSize * scale * breathe;
+    const finalSize = dot.baseSize * scale * breathing;
     
-    if (finalSize > 0.5) {
+    // Draw dot if visible
+    if (finalSize > 0.3) {
       ctx.fillStyle = dot.color;
       ctx.beginPath();
       ctx.arc(dot.x + offsetX, dot.y + offsetY, finalSize, 0, Math.PI * 2);
       ctx.fill();
     }
-  }
+  });
   
+  // Continue animation loop if motion not reduced
   if (!reduceMotion) {
     requestAnimationFrame(animate);
   }
 }
 
 /**
- * Mouse tracking
+ * Initialize on page load
+ */
+function init() {
+  if (!initialized) {
+    initHalftone();
+    animate();
+  }
+}
+
+/**
+ * Handle window resize
+ */
+function handleResize() {
+  initialized = false;
+  init();
+}
+
+/**
+ * Track mouse position
  */
 function handleMouseMove(e) {
   mouseX = e.clientX;
@@ -247,7 +236,7 @@ function handleMouseMove(e) {
 }
 
 /**
- * Touch tracking
+ * Track touch position for mobile
  */
 function handleTouchMove(e) {
   if (e.touches.length > 0) {
@@ -256,29 +245,20 @@ function handleTouchMove(e) {
   }
 }
 
-/**
- * Main draw loop (static pattern)
- */
-function draw() {
-  if (!initialized) {
-    initHalftone();
-  }
-} if (!initialized) {
-    initHalftone();
-  }
-  // Pattern is static, no animation needed
-}
+// Button navigation
+document.querySelectorAll('.control-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const target = btn.getAttribute('data-target');
+    if (target) {
+      window.location.href = target;
+    }
+  });
+});
 
-/**
- * Handle window resize
- */
-function handleResize() {
-  initialized = false;
-  draw();
-}
-
-// Initialize
+// Event listeners
 if (canvas) {
   window.addEventListener('resize', handleResize);
-  draw();
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('touchmove', handleTouchMove);
+  init();
 }

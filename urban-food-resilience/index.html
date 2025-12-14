@@ -15,59 +15,46 @@
   <canvas id="bg"></canvas>
 
   <main class="home-shell" aria-label="Homepage">
-    <section class="home-center">
-      <!-- Title -->
+    <!-- Header: Title top-left -->
+    <header class="header">
       <h1 class="title">
-        Urban Food Resilience Atlas
+        Low-Carbon Food<br>Resilience in<br>New York City
       </h1>
+      <p class="subtitle">What if everyday eating could become a visible and actionable lever for urban climate resilience?</p>
+    </header>
 
-      <!-- Hypothesis -->
-      <p class="hypothesis">
-        What if everyday food consumption could become a visible, data-driven tool for urban climate resilience
-        by connecting eating behavior to neighborhood vulnerability and carbon impact?
-      </p>
+    <!-- Top right: Presentation link -->
+    <nav class="nav-top-right">
+      <a href="presentation.html" class="nav-link">Presentation</a>
+    </nav>
 
-      <!-- Navigation buttons -->
-      <nav class="nav-grid" aria-label="Main navigation">
-        <a class="nav-btn" href="project.html">
-          <span class="nav-num">01</span>
-          <span class="nav-label">Project Description</span>
-        </a>
+    <!-- Bottom left: Name -->
+    <div class="info-bottom-left">
+      <p class="info-text">Sunni Hu</p>
+    </div>
 
-        <a class="nav-btn" href="computation.html">
-          <span class="nav-num">02</span>
-          <span class="nav-label">Computational Methods</span>
-        </a>
+    <!-- Bottom right: Credits -->
+    <footer class="info-bottom-right">
+      <p class="info-text">CQ 2 Fall 2025</p>
+    </footer>
 
-        <a class="nav-btn" href="design.html">
-          <span class="nav-num">03</span>
-          <span class="nav-label">Design Methods</span>
-        </a>
+    <!-- Center: Interactive buttons circle -->
+    <div class="center-controls">
+      <button class="control-btn" data-target="project.html" aria-label="Project Description"></button>
+      <button class="control-btn" data-target="computation.html" aria-label="Computational Methods"></button>
+      <button class="control-btn" data-target="design.html" aria-label="Design Methods"></button>
+      <button class="control-btn" data-target="precedents.html" aria-label="Precedents"></button>
+      <button class="control-btn" data-target="proof.html" aria-label="Proof of Concept"></button>
+    </div>
 
-        <a class="nav-btn" href="precedents.html">
-          <span class="nav-num">04</span>
-          <span class="nav-label">Precedents</span>
-        </a>
-
-        <a class="nav-btn" href="proof.html">
-          <span class="nav-num">05</span>
-          <span class="nav-label">Proof of Concept</span>
-        </a>
-
-        <a class="nav-btn" href="presentation.html">
-          <span class="nav-num">06</span>
-          <span class="nav-label">Presentation</span>
-        </a>
-      </nav>
-
-      <div class="home-meta">
-        <span>GSAPP · Colloquium · Review 3</span>
-        <button id="motionToggle" class="ghost-btn" type="button">Reduce Motion</button>
-      </div>
-    </section>
+    <!-- Motion toggle -->
+    <div class="motion-toggle-wrapper">
+      <button id="motionToggle" class="ghost-btn" type="button">Reduce Motion</button>
+    </div>
   </main>
 
   <script src="js/main.js"></script>
   <script src="js/page.js"></script>
 </body>
 </html>
+

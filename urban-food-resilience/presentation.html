@@ -3,51 +3,209 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Presentation & Findings - Urban Food Resilience Atlas</title>
+  <title>Presentation - Sunni Hu - Columbia GSAPP CDP CQ2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/page.css" />
+  <style>
+    body.page {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #bg {
+      display: none;
+    }
+
+    .page-top {
+      display: none;
+    }
+
+    .page-shell {
+      all: unset;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .page-sidebar {
+      display: none;
+    }
+
+    .page-content {
+      all: unset;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #pdf-canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      object-fit: contain;
+    }
+
+    .presentation-controls {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .home-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 200ms ease;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+    }
+
+    .home-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.7);
+      color: #fff;
+    }
+
+    .home-btn:active {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .nav-btn {
+      display: none;
+    }
+
+    .page-counter {
+      display: none;
+    }
+
+    #pdf-canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      object-fit: contain;
+      opacity: 1;
+      transition: opacity 300ms ease;
+    }
+
+    #pdf-canvas.transitioning {
+      opacity: 0;
+    }
+
+    .home-link {
+      display: none;
+    }
+  </style>
 </head>
 
-<body>
-  <header class="page-top">
-    <a class="back" href="index.html">← Home</a>
-    <h1>Presentation & Findings</h1>
-    <p class="sub">Key insights and visual synthesis of the research.</p>
-  </header>
+<body class="page">
+  <div class="page-shell">
+    <main class="page-content">
+      <canvas id="pdf-canvas"></canvas>
+    </main>
+  </div>
 
-  <aside class="toc" aria-label="Table of contents">
-    <a href="#findings">Key Findings</a>
-    <a href="#framework">Visual Framework</a>
-    <a href="#implications">Implications</a>
-  </aside>
+  <div class="presentation-controls">
+    <a href="index.html" class="home-btn">← Home</a>
+  </div>
 
-  <main class="page">
-    <section id="findings" class="block reveal">
-      <h2>Key Research Findings</h2>
-      <p>This atlas presents comprehensive visual and analytical findings on urban food vulnerability, resilience gaps, and design opportunities in New York City. Analysis reveals significant disparities in food access across neighborhoods, with vulnerability concentrated in areas of high population density, limited land, and low socioeconomic resources.</p>
-      <p>Food system transformation requires integrated approaches addressing production, processing, distribution, consumption, and waste across all scales.</p>
-    </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    // Set up PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    <section id="framework" class="block reveal">
-      <h2>Visual Framework & Communication</h2>
-      <p>Maps, diagrams, and data visualizations communicate complex food system relationships in accessible, systematic formats for academic and public audiences. Interactive tools enable exploration of vulnerability indices, infrastructure networks, and scenario interventions.</p>
-      <p>Visual synthesis emphasizes systems thinking, showing how changes at one scale ripple through interconnected components.</p>
-    </section>
+    const pdfPath = 'Sunni-Hu-Columbia-GSAPP-CDP-CQ2.pdf';
+    let pdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 0;
 
-    <section id="implications" class="block reveal">
-      <h2>Policy Implications & Next Steps</h2>
-      <ul>
-        <li>Zoning reform to enable urban agriculture and food infrastructure</li>
-        <li>Infrastructure investment in identified resilience nodes</li>
-        <li>Community engagement and participatory design strategies</li>
-        <li>Measurement and monitoring frameworks for system health</li>
-        <li>Coordination across agencies and stakeholders</li>
-        <li>Long-term commitment to equitable food system transformation</li>
-      </ul>
-      <p>Further research should explore implementation barriers, financing mechanisms, and community leadership in operationalizing these recommendations.</p>
+    // Load PDF
+    async function loadPdf() {
+      try {
+        pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+        totalPages = pdfDoc.numPages;
+        document.getElementById('page-total').textContent = totalPages;
+        renderPage(currentPage);
+      } catch (error) {
+        console.error('Error loading PDF:', error);
+      }
+    }
+
+    // Render page
+    async function renderPage(pageNum) {
+      if (pageNum > totalPages || pageNum < 1) return;
+      
+      const canvas = document.getElementById('pdf-canvas');
+      canvas.classList.add('transitioning');
+
+      // Wait for fade out
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      currentPage = pageNum;
+
+      const page = await pdfDoc.getPage(pageNum);
+      const context = canvas.getContext('2d');
+
+      // Get viewport at scale 1
+      const viewport = page.getViewport({ scale: 1 });
+      
+      // Calculate scale to fit window
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const scaleX = windowWidth / viewport.width;
+      const scaleY = windowHeight / viewport.height;
+      const scale = Math.min(scaleX, scaleY);
+
+      // Apply scaled viewport
+      const scaledViewport = page.getViewport({ scale });
+      canvas.width = scaledViewport.width;
+      canvas.height = scaledViewport.height;
+
+      await page.render({
+        canvasContext: context,
+        viewport: scaledViewport
+      }).promise;
+
+      // Fade in
+      canvas.classList.remove('transitioning');
+    }
+
+    // Keyboard navigation - arrow keys for slide navigation removed since we only show home button
+    document.addEventListener('keydown', (e) => {
+      // Reserved for future functionality
+    });
+
+    // Load PDF on page load
+    loadPdf();
+  </script>
+</body>
+</html>
     </section>
 
     <button id="toTop" class="to-top" type="button">↑ Top</button>

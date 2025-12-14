@@ -1,35 +1,23 @@
 /* 
-STYLE: Data-Interface / Research Tool
+STYLE: Interactive Interface - Urban Food Resilience Atlas
 
 Visual Intent:
-- Looks like an analytical tool or dashboard
-- Clean, precise, systematic
-- Emphasis on grids, alignment, and data clarity
+- Minimal, elegant, spacious
+- Content positioned in corners
+- Central interactive focus
+- Background as functional aesthetic layer
 
 Layout:
-- Clear vertical rhythm
-- Sections separated by thin rules
-- Figures and captions treated as first-class elements
-
-Color:
-- Monochrome base (white, black, gray)
-- One muted accent color for data highlights
-
-Typography:
-- Sans-serif for body
-- Slightly condensed headings allowed
-
-Avoid:
-- Decorative illustrations
-- Expressive typography
+- Four corners for information hierarchy
+- Center for interaction
+- Full-screen background canvas
 */
 
 :root {
-  --bg: #003618;
-  --fg: #f7f3ea;
-  --muted: #a8c5b0;
-  --line: rgba(247,243,234,0.2);
+  --bg: #ffffff;
+  --fg: #1a1a1a;
   --accent: #7cb342;
+  --line: rgba(26,26,26,0.1);
   --maxw: 980px;
 }
 
@@ -62,7 +50,7 @@ a {
    ============================================ */
 
 .home {
-  overflow: hidden; /* Homepage doesn't scroll */
+  overflow: hidden;
 }
 
 #bg {
@@ -71,124 +59,162 @@ a {
   width: 100%;
   height: 100%;
   z-index: 0;
+  opacity: 0.35;
 }
 
 .home-shell {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   height: 100vh;
+  width: 100%;
   display: grid;
-  place-items: center;
-  padding: 24px;
+  padding: 32px;
 }
 
-.home-center {
-  width: min(var(--maxw), 100%);
-  display: grid;
-  gap: 18px;
-  text-align: center;
+/* Header: Top-left title */
+.header {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 20;
 }
 
 .title {
-  font-size: clamp(28px, 4vw, 46px);
+  font-size: clamp(16px, 2.2vw, 26px);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0;
-  line-height: 1.08;
-}
-
-.hypothesis {
-  margin: 0 auto;
-  max-width: 78ch;
-  color: var(--muted);
-  font-size: clamp(14px, 1.6vw, 18px);
-  font-weight: 300;
-  line-height: 1.6;
-}
-
-.nav-grid {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.nav-btn {
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 14px 14px;
-  text-align: left;
-  display: grid;
-  gap: 10px;
-  background: rgba(0,54,24,0.6);
-  backdrop-filter: blur(10px);
-  transform: translateY(0);
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-  outline: none;
-  cursor: pointer;
-  color: var(--fg);
-}
-
-.nav-btn:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.3);
-  background: rgba(29,29,27,0.8);
-}
-
-.nav-btn:focus-visible {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255,176,0,0.18);
-}
-
-.nav-num {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.nav-label {
-  font-size: 15px;
-  font-weight: 500;
   letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.2;
+  color: var(--fg);
+  max-width: 280px;
 }
 
-.home-meta {
-  margin-top: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 12px;
+.subtitle {
+  font-size: clamp(11px, 1.2vw, 13px);
   font-weight: 400;
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
+  line-height: 1.4;
+  color: #666;
+  margin: 8px 0 0 0;
+  max-width: 220px;
+}
+
+/* Top-right: Presentation link */
+.nav-top-right {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  z-index: 20;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 200ms ease, color 200ms ease;
+  padding-bottom: 2px;
+}
+
+.nav-link:hover {
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* Bottom-left: Placeholder name */
+.info-bottom-left {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  z-index: 20;
+}
+
+/* Bottom-right: Credits */
+.info-bottom-right {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 20;
+}
+
+.info-text {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0;
+  text-align: right;
+}
+
+.info-bottom-left .info-text {
+  text-align: left;
+}
+
+/* Center: Interactive circular buttons */
+.center-controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  outline: none;
+}
+
+.control-btn:hover {
+  background: #f9fdf4;
+  box-shadow: 0 12px 32px rgba(124,179,66,0.25);
+  transform: scale(1.12);
+}
+
+.control-btn:active {
+  transform: scale(0.92);
+}
+
+/* Motion toggle in bottom center */
+.motion-toggle-wrapper {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
 }
 
 .ghost-btn {
-  border: 1px solid var(--line);
   background: transparent;
-  padding: 8px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  color: var(--muted);
-  font-size: 12px;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
   font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease;
+  color: #666;
   font-family: "Lexend Deca", sans-serif;
-  transition: border-color 160ms ease, color 160ms ease;
-  outline: none;
 }
 
 .ghost-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+  background: rgba(124,179,66,0.05);
 }
-
-
 
 /* ============================================
    Typography
@@ -219,110 +245,250 @@ p {
 }
 
 /* ============================================
-   Figures & Data Elements
+   Content Pages
    ============================================ */
 
-figure {
-  margin: 2rem 0;
+.page {
+  position: relative;
+  z-index: 5;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.page-top {
+  position: relative;
+  z-index: 2;
+  padding: 32px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 700;
+  margin: 0;
+  color: var(--fg);
+}
+
+.page-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.page-nav a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #999;
+  transition: color 200ms ease;
+}
+
+.page-nav a:hover {
+  color: var(--accent);
+}
+
+.page-shell {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr min(var(--maxw), 90%) 1fr;
+  gap: 32px;
+  padding: 32px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.page-sidebar {
+  display: grid;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.toc-heading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 8px 0;
+}
+
+.toc {
+  display: grid;
+  gap: 8px;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-figcaption {
-  font-size: 0.95rem;
+.toc li {
+  font-size: 13px;
+}
+
+.toc a {
   color: var(--muted);
-  margin-top: 0.75rem;
-  font-style: italic;
+  transition: color 200ms ease;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.toc a:hover,
+.toc a.active {
+  color: var(--accent);
+}
+
+.page-content {
+  display: grid;
+  gap: 32px;
+  padding-right: 32px;
+  overflow-y: auto;
+  max-height: calc(100vh - 64px);
+}
+
+.content-block {
+  display: grid;
+  gap: 12px;
+}
+
+.content-block h2 {
+  margin-top: 0;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 20;
+}
+
+.to-top-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease;
+  color: #999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.to-top-btn.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.to-top-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ============================================
-   Lists
+   Responsive
    ============================================ */
 
-ul, ol {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-}
-
-li {
-  margin-bottom: 0.75rem;
-  line-height: 1.7;
-}
-
-
-
-/* ============================================
-   Responsive Design
-   ============================================ */
-
-@media (max-width: 860px) {
-  .nav-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 1200px) {
+  .page-shell {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .page-sidebar {
+    display: none;
+  }
+  
+  .page-content {
+    padding-right: 0;
   }
 }
 
 @media (max-width: 768px) {
-  h1 {
-    font-size: 1.75rem;
+  :root {
+    --maxw: 90%;
   }
-
-  h2 {
-    font-size: 1.5rem;
+  
+  .header {
+    top: 20px;
+    left: 20px;
   }
-
-  .nav-container {
+  
+  .title {
+    font-size: 18px;
+    max-width: 150px;
+  }
+  
+  .nav-top-right {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .info-bottom-left,
+  .info-bottom-right {
+    bottom: 20px;
+  }
+  
+  .info-bottom-left {
+    left: 20px;
+  }
+  
+  .info-bottom-right {
+    right: 20px;
+  }
+  
+  .center-controls {
+    gap: 20px;
+  }
+  
+  .control-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .motion-toggle-wrapper {
+    bottom: 20px;
+  }
+  
+  .page-shell {
+    padding: 20px;
+  }
+  
+  .page-top {
+    padding: 20px;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .nav-links {
-    gap: 1.5rem;
-    justify-content: center;
-  }
-
-  main:not(.home-shell) {
-    padding: 1.5rem;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
 
 @media (max-width: 520px) {
-  .nav-grid {
-    grid-template-columns: 1fr;
+  .center-controls {
+    gap: 16px;
   }
-
-  .home-meta {
-    flex-direction: column;
+  
+  .control-btn {
+    width: 44px;
+    height: 44px;
   }
-
-  h1 {
-    font-size: 1.5rem;
+  
+  .title {
+    font-size: 14px;
   }
-
-  h2 {
-    font-size: 1.25rem;
+  
+  .nav-link {
+    font-size: 12px;
   }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .nav-links a {
-    padding: 0.25rem 0;
-  }
-
-  main:not(.home-shell) {
-    padding: 1rem;
-  }
-
-  .placeholder {
-    padding: 4rem 1rem;
+  
+  .info-text {
+    font-size: 10px;
   }
 }
