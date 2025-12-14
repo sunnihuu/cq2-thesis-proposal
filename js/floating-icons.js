@@ -97,26 +97,17 @@ function initFloatingIcons() {
 
     // Random animation parameters
     const floatDuration = 15 + Math.random() * 15; // 15-30 seconds
-    const rotateDuration = 10 + Math.random() * 10; // 10-20 seconds
     const floatDelay = Math.random() * 5; // 0-5 seconds delay
-    const rotateDelay = Math.random() * 3; // 0-3 seconds delay
     
     // Random float distance and direction (smaller to prevent overlap)
     const floatX = (Math.random() - 0.5) * 60; // -30 to 30
     const floatY = (Math.random() - 0.5) * 60; // -30 to 30
     
-    // Random rotation direction
-    const rotateDirection = Math.random() > 0.5 ? 1 : -1;
-    const rotateDegrees = rotateDirection * (180 + Math.random() * 180); // 180-360 degrees
-    
     // Apply custom CSS variables for animations
     link.style.setProperty('--float-x', `${floatX}px`);
     link.style.setProperty('--float-y', `${floatY}px`);
-    link.style.setProperty('--rotate-deg', `${rotateDegrees}deg`);
     link.style.setProperty('--float-duration', `${floatDuration}s`);
-    link.style.setProperty('--rotate-duration', `${rotateDuration}s`);
     link.style.setProperty('--float-delay', `${floatDelay}s`);
-    link.style.setProperty('--rotate-delay', `${rotateDelay}s`);
     link.style.setProperty('--icon-size', `${pos.size}px`);
     
     // Make draggable
@@ -130,23 +121,19 @@ function makeDraggable(element) {
   let startX, startY, initialLeft, initialTop;
   
   element.addEventListener('mousedown', (e) => {
-    if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
-      e.preventDefault();
-      isDragging = true;
-      
-      // Pause animations while dragging
-      element.style.animationPlayState = 'paused';
-      
-      startX = e.clientX;
-      startY = e.clientY;
-      
-      // Get current position
-      const computedStyle = window.getComputedStyle(element);
-      initialLeft = parseFloat(computedStyle.left);
-      initialTop = parseFloat(computedStyle.top);
-      
-      element.style.cursor = 'grabbing';
-    }
+    e.preventDefault();
+    isDragging = true;
+    
+    // Pause animations while dragging
+    element.style.animationPlayState = 'paused';
+    
+    startX = e.clientX;
+    startY = e.clientY;
+    
+    // Get current position
+    const computedStyle = window.getComputedStyle(element);
+    initialLeft = parseFloat(computedStyle.left);
+    initialTop = parseFloat(computedStyle.top);
   });
   
   document.addEventListener('mousemove', (e) => {
@@ -167,7 +154,6 @@ function makeDraggable(element) {
       
       // Resume animations
       element.style.animationPlayState = 'running';
-      element.style.cursor = '';
     }
   });
   
