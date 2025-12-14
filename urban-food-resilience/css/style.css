@@ -25,11 +25,11 @@ Avoid:
 */
 
 :root {
-  --bg: #1d1d1b;
-  --fg: #f2f2e7;
-  --muted: #999999;
-  --line: rgba(242,242,231,0.15);
-  --accent: #ffb000;
+  --bg: #003618;
+  --fg: #f7f3ea;
+  --muted: #a8c5b0;
+  --line: rgba(247,243,234,0.2);
+  --accent: #7cb342;
   --maxw: 980px;
 }
 
@@ -120,7 +120,7 @@ a {
   text-align: left;
   display: grid;
   gap: 10px;
-  background: rgba(29,29,27,0.6);
+  background: rgba(0,54,24,0.6);
   backdrop-filter: blur(10px);
   transform: translateY(0);
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;

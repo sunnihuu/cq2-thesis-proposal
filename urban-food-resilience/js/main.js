@@ -1,10 +1,10 @@
 /*
-INTERACTION: Particle Morphing Background
+INTERACTION: CMYK Halftone Pattern Background
 
 Core functionality:
-- Particle-based image morphing
-- Wind force and attraction physics
-- Dithering algorithm for image processing
+- CMYK color separation
+- Halftone dot pattern generation
+- Random color palette generation
 - Motion preferences respect
 */
 
@@ -21,11 +21,9 @@ if (btn) {
   });
 }
 
-let frameCount = 0;
-let particles = [];
-let state1 = [];
-let state2 = [];
-let currentState = 0;
+// CMYK colors
+let cyan, magenta, yellow, black;
+let initialized = false;
 
 // Particle class
 class Grain {
@@ -76,7 +74,7 @@ class Grain {
   }
 
   show() {
-    ctx.fillStyle = '#f2f2e7';
+    ctx.fillStyle = '#f7f3ea';
     ctx.fillRect(this.pos.x, this.pos.y, this.size, this.size);
   }
 
@@ -227,11 +225,22 @@ function initializePatterns() {
   const maxParticles = Math.min(state1.length, state2.length, 8000);
   for (let i = 0; i < maxParticles; i++) {
     if (state1[i]) {
-      particles.push(new Grain(state1[i].x, state1[i].y));
+      const particle = new Grain(state1[i].x, state1[i].y);
+      // Start particles dispersed on initial load
+      if (!initialized) {
+        particle.pos.x += particle.wind.x * 150;
+        particle.pos.y += particle.wind.y * 150;
+      }
+      particles.push(particle);
     }
   }
   
-  frameCount = 0;
+  if (!initialized) {
+    frameCount = 180; // Skip to attraction phase
+    initialized = true;
+  } else {
+    frameCount = 0;
+  }
 }
 
 /**
@@ -241,7 +250,7 @@ function draw() {
   if (!canvas || !ctx || particles.length === 0) return;
   
   // Background
-  ctx.fillStyle = '#1d1d1b';
+  ctx.fillStyle = '#003618';
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
   
   // Animation sequence
