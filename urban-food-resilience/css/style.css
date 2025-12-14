@@ -25,11 +25,11 @@ Avoid:
 */
 
 :root {
-  --bg: #ffffff;
-  --fg: #141414;
-  --muted: #606060;
-  --line: rgba(0,0,0,0.12);
-  --accent: #2b6f62; /* Muted green, food/climate aesthetic */
+  --bg: #1d1d1b;
+  --fg: #f2f2e7;
+  --muted: #999999;
+  --line: rgba(242,242,231,0.15);
+  --accent: #ffb000;
   --maxw: 980px;
 }
 
@@ -116,24 +116,26 @@ a {
   text-align: left;
   display: grid;
   gap: 10px;
-  background: rgba(255,255,255,0.75);
+  background: rgba(29,29,27,0.6);
   backdrop-filter: blur(10px);
   transform: translateY(0);
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
   box-shadow: 0 0 0 rgba(0,0,0,0);
   outline: none;
   cursor: pointer;
+  color: var(--fg);
 }
 
 .nav-btn:hover {
   transform: translateY(-2px);
-  border-color: rgba(0,0,0,0.22);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  border-color: var(--accent);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+  background: rgba(29,29,27,0.8);
 }
 
 .nav-btn:focus-visible {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(43,111,98,0.18);
+  box-shadow: 0 0 0 3px rgba(255,176,0,0.18);
 }
 
 .nav-num {
@@ -174,100 +176,15 @@ a {
 }
 
 .ghost-btn:hover {
-  border-color: rgba(0,0,0,0.22);
-  color: var(--fg);
-}
-
-/* ============================================
-   Content Pages
-   ============================================ */
-
-main:not(.home-shell) {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.navbar {
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav-container {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.nav-title {
-  font-size: 1rem;
-  font-weight: normal;
-  margin: 0;
-  color: var(--fg);
-  white-space: nowrap;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  font-size: 0.9rem;
-  color: var(--fg);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 0.25rem;
-  transition: all 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  border-bottom-color: var(--fg);
+  border-color: var(--accent);
   color: var(--accent);
 }
 
-/* ============================================
-   Site Header (Content Pages)
-   ============================================ */
 
-.site-header {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.site-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: normal;
-  line-height: 1.3;
-}
 
 /* ============================================
-   Content Sections
+   Typography
    ============================================ */
-
-section {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
-}
-
-section:last-child {
-  border-bottom: none;
-}
 
 h2 {
   font-size: 2rem;
@@ -288,7 +205,6 @@ h4 {
 
 p {
   margin-bottom: 1rem;
-  max-width: 800px;
   line-height: 1.8;
 }
 
@@ -314,17 +230,8 @@ img {
   display: block;
 }
 
-.placeholder {
-  border: 1px solid var(--line);
-  padding: 6rem 2rem;
-  text-align: center;
-  color: var(--muted);
-  background: rgba(0,0,0,0.02);
-  font-size: 0.95rem;
-}
-
 /* ============================================
-   Lists & Data
+   Lists
    ============================================ */
 
 ul, ol {
@@ -337,111 +244,7 @@ li {
   line-height: 1.7;
 }
 
-/* ============================================
-   Toggle & Interaction Elements
-   ============================================ */
 
-.toggle-btn,
-.layer-toggle,
-[data-toggle] {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  padding: 0.5rem 1rem;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  border-radius: 8px;
-}
-
-.toggle-btn:hover,
-.layer-toggle:hover,
-[data-toggle]:hover {
-  background: rgba(0,0,0,0.02);
-  border-color: rgba(0,0,0,0.22);
-}
-
-.toggle-btn:active,
-.layer-toggle:active,
-[data-toggle]:active {
-  background: rgba(0,0,0,0.05);
-}
-
-.hidden {
-  display: none;
-}
-
-/* ============================================
-   Data & Analysis Sections
-   ============================================ */
-
-.data-section {
-  background: rgba(0,0,0,0.02);
-  padding: 2rem;
-  margin: 2rem 0;
-  border-left: 3px solid var(--accent);
-  border-radius: 4px;
-}
-
-.data-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.data-item {
-  padding: 1.5rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
-.data-item h4 {
-  margin-top: 0;
-}
-
-/* ============================================
-   Tables
-   ============================================ */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-size: 0.95rem;
-}
-
-th {
-  background: rgba(0,0,0,0.02);
-  border: 1px solid var(--line);
-  padding: 1rem;
-  text-align: left;
-  font-weight: normal;
-}
-
-td {
-  border: 1px solid var(--line);
-  padding: 0.75rem 1rem;
-}
-
-tr:nth-child(even) {
-  background: rgba(0,0,0,0.01);
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-
-.footer {
-  background: rgba(0,0,0,0.02);
-  border-top: 1px solid var(--line);
-  padding: 2rem;
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
 
 /* ============================================
    Responsive Design
