@@ -1,20 +1,32 @@
 // D3.js Force-Directed Network for Five Navigation Nodes
 
-// Data structure for the five pages
+// Data structure for the eleven pages
 const data = {
   nodes: [
-    { id: "project", group: 1, label: "Project", url: "project.html" },
-    { id: "computation", group: 2, label: "Computation", url: "computation.html" },
-    { id: "design", group: 3, label: "Design", url: "design.html" },
-    { id: "precedents", group: 4, label: "Precedents", url: "precedents.html" },
-    { id: "proof", group: 5, label: "Proof", url: "proof.html" }
+    { id: "node1", group: 1, label: "Node 1", url: "#" },
+    { id: "node2", group: 2, label: "Node 2", url: "#" },
+    { id: "node3", group: 3, label: "Node 3", url: "#" },
+    { id: "node4", group: 4, label: "Node 4", url: "#" },
+    { id: "node5", group: 5, label: "Node 5", url: "#" },
+    { id: "node6", group: 6, label: "Node 6", url: "#" },
+    { id: "node7", group: 7, label: "Node 7", url: "#" },
+    { id: "node8", group: 8, label: "Node 8", url: "#" },
+    { id: "node9", group: 9, label: "Node 9", url: "#" },
+    { id: "node10", group: 10, label: "Node 10", url: "#" },
+    { id: "node11", group: 11, label: "Node 11", url: "#" }
   ],
   links: [
-    { source: "project", target: "computation", value: 1 },
-    { source: "computation", target: "design", value: 1 },
-    { source: "design", target: "precedents", value: 1 },
-    { source: "precedents", target: "proof", value: 1 },
-    { source: "proof", target: "project", value: 1 }
+    { source: "node1", target: "node2", value: 1 },
+    { source: "node2", target: "node3", value: 1 },
+    { source: "node3", target: "node4", value: 1 },
+    { source: "node4", target: "node5", value: 1 },
+    { source: "node5", target: "node6", value: 1 },
+    { source: "node6", target: "node7", value: 1 },
+    { source: "node7", target: "node8", value: 1 },
+    { source: "node8", target: "node9", value: 1 },
+    { source: "node9", target: "node10", value: 1 },
+    { source: "node10", target: "node11", value: 1 },
+    { source: "node11", target: "node1", value: 1 }
   ]
 };
 
@@ -23,33 +35,25 @@ function createNetwork() {
   const width = container.clientWidth || 600;
   const height = container.clientHeight || 400;
 
-  // Color scale - using shades of green to match your accent color
+  // Color scale - using shades of gray
   const color = d3.scaleOrdinal()
-    .domain([1, 2, 3, 4, 5])
-    .range(['#1a1a1a', '#333333', '#4d4d4d', '#666666', '#808080']);
+    .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    .range(['#1a1a1a', '#262626', '#333333', '#404040', '#4d4d4d', '#595959', '#666666', '#737373', '#808080', '#8c8c8c', '#999999']);
 
   // Create copies of data
   const links = data.links.map(d => ({...d}));
   const nodes = data.nodes.map(d => ({...d}));
 
-  // Position nodes in a pentagon/pentagram shape
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const radius = 100; // Distance from center
-  
-  nodes.forEach((node, i) => {
-    const angle = (i * 2 * Math.PI / 5) - Math.PI / 2; // Start from top
-    node.x = centerX + radius * Math.cos(angle);
-    node.y = centerY + radius * Math.sin(angle);
-    // Don't fix positions initially - let them be draggable
+  // Initialize nodes with completely random positions across the entire area
+  nodes.forEach(node => {
+    node.x = Math.random() * width;
+    node.y = Math.random() * height;
   });
 
-  // Create force simulation with dynamic forces
+  // Create force simulation with minimal forces for truly organic behavior
   const simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(d => d.id).distance(100).strength(1.2))
-    .force("charge", d3.forceManyBody().strength(-1200))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collision", d3.forceCollide().radius(35).strength(0.8))
+    .force("link", d3.forceLink(links).id(d => d.id).distance(50).strength(0.05))
+    .force("charge", d3.forceManyBody().strength(-50))
     .alphaDecay(0.01)
     .velocityDecay(0.2)
     .on("tick", ticked);
@@ -85,23 +89,12 @@ function createNetwork() {
     })
     .style("cursor", "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><circle cx=\"16\" cy=\"16\" r=\"8\" fill=\"%237cb342\" opacity=\"0.6\"/></svg>') 16 16, pointer");
 
-  // Add circles to nodes
+  // Add circles to nodes (no numbers)
   nodeGroup.append("circle")
     .attr("r", 28)
     .attr("fill", d => color(d.group))
     .attr("stroke", "#ffffff")
     .attr("stroke-width", 3);
-
-  // Add numbers to nodes
-  nodeGroup.append("text")
-    .text((d, i) => i + 1)
-    .attr("text-anchor", "middle")
-    .attr("dy", ".35em")
-    .attr("font-size", "18px")
-    .attr("font-weight", "700")
-    .attr("fill", "#ffffff")
-    .attr("pointer-events", "none")
-    .style("user-select", "none");
 
   // Create cursor label element
   const cursorLabel = d3.select("body").append("div")
