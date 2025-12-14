@@ -125,5 +125,41 @@ function render() {
 
   camera.updateMatrixWorld();
 
+  // Animate lines based on cursor position
+  lineObjects.forEach((line, index) => {
+    // Project line position to screen space
+    const screenPos = line.position.clone();
+    screenPos.project(camera);
+    
+    // Calculate distance from cursor to line in screen space
+    const dx = screenPos.x - pointer.x;
+    const dy = screenPos.y - pointer.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Scale based on distance (closer = bigger, farther = smaller)
+    const baseScale = line.userData.baseScale;
+    let scaleFactor;
+    
+    if (distance < 0.5) {
+      // Close to cursor - make bigger
+      scaleFactor = 1 + (0.5 - distance) * 2; // Scale up to 2x
+    } else if (distance < 1.0) {
+      // Medium distance - normal to slightly smaller
+      scaleFactor = 1 - (distance - 0.5) * 0.6; // Scale down to 0.7x
+    } else {
+      // Far from cursor - smaller
+      scaleFactor = 0.4;
+    }
+    
+    // Smooth transition
+    const targetScale = baseScale * scaleFactor;
+    line.scale.x += (targetScale - line.scale.x) * 0.1;
+    line.scale.y += (targetScale - line.scale.y) * 0.1;
+    line.scale.z += (targetScale - line.scale.z) * 0.1;
+    
+    // Also adjust opacity based on scale
+    line.material.opacity = 0.3 + (scaleFactor * 0.3);
+  });
+
   renderer.render(scene, camera);
 }
