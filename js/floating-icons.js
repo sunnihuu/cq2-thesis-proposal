@@ -1,11 +1,11 @@
 // Floating and rotating food icons animation
 
 const icons = [
-  { src: 'images/icons/Apple.png', alt: 'Apple', url: '#', title: 'Data, Audience and Proof of Concept' },
-  { src: 'images/icons/Broccoli.png', alt: 'Broccoli', url: '#', title: 'Methods' },
-  { src: 'images/icons/Carrot.png', alt: 'Carrot', url: '#', title: 'Precedent and References' },
   { src: 'images/icons/Cherries.png', alt: 'Cherries', url: '#', title: 'Project Overview' },
-  { src: 'images/icons/Pear.png', alt: 'Pear', url: '#', title: 'Conceptual Framework' }
+  { src: 'images/icons/Pear.png', alt: 'Pear', url: '#', title: 'Conceptual Framework' },
+  { src: 'images/icons/Broccoli.png', alt: 'Broccoli', url: '#', title: 'Project Methods' },
+  { src: 'images/icons/Apple.png', alt: 'Apple', url: '#', title: 'Proof of Concept' },
+  { src: 'images/icons/Carrot.png', alt: 'Carrot', url: '#', title: 'Precedent & References' }
 ];
 
 // Function to check if two circles overlap
@@ -77,26 +77,18 @@ function initFloatingIcons() {
     return;
   }
 
-  // Create tooltip element
-  const tooltip = document.createElement('div');
-  tooltip.id = 'floating-icon-tooltip';
-  tooltip.style.cssText = `
-    position: fixed;
-    background: transparent;
-    color: #000;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 600;
-    pointer-events: none;
-    z-index: 300;
-    display: none;
-    white-space: nowrap;
-    font-family: "Lexend Deca", sans-serif;
-  `;
-  document.body.appendChild(tooltip);
-
-  // Generate non-overlapping positions
-  const positions = generateNonOverlappingPositions(icons.length, window.innerWidth, window.innerHeight);
+  // Place icons in a centered horizontal line (evenly spaced)
+  const positions = icons.map((_, idx) => {
+    const total = icons.length;
+    const startX = 20; // percent (moved left)
+    const endX = 70;   // percent (closer together)
+    const step = total > 1 ? (endX - startX) / (total - 1) : 0;
+    return {
+      x: startX + step * idx,
+      y: 40,  // moved up
+      size: 120
+    };
+  });
 
   icons.forEach((icon, index) => {
     // Create anchor element
@@ -120,7 +112,7 @@ function initFloatingIcons() {
     link.style.position = 'absolute';
 
     // Random animation parameters
-    const floatDuration = 15 + Math.random() * 15; // 15-30 seconds
+    const floatDuration = 20 + Math.random() * 20; // 20-40 seconds (longer for smoother)
     const floatDelay = Math.random() * 5; // 0-5 seconds delay
     
     // Random float distance and direction (smaller to prevent overlap)
@@ -133,22 +125,27 @@ function initFloatingIcons() {
     link.style.setProperty('--float-duration', `${floatDuration}s`);
     link.style.setProperty('--float-delay', `${floatDelay}s`);
     link.style.setProperty('--icon-size', `${pos.size}px`);
+
+    // Add a visible label under each icon
+    const labelEl = document.createElement('div');
+    labelEl.className = 'floating-icon-label';
+    
+    // Split multi-word titles into two lines
+    const title = icon.title || icon.alt;
+    const words = title.split(' ');
+    if (words.length >= 2) {
+      const midpoint = Math.ceil(words.length / 2);
+      const line1 = words.slice(0, midpoint).join(' ');
+      const line2 = words.slice(midpoint).join(' ');
+      labelEl.innerHTML = `${line1}<br>${line2}`;
+    } else {
+      labelEl.textContent = title;
+    }
+    link.appendChild(labelEl);
     
     console.log(`Icon ${index} created:`, icon.alt, 'at', pos.x + '%', pos.y + '%');
     
     // Add tooltip hover listeners
-    link.addEventListener('mouseenter', (e) => {
-      tooltip.textContent = icon.title;
-      tooltip.style.display = 'block';
-      
-      const rect = link.getBoundingClientRect();
-      tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
-      tooltip.style.top = (rect.top - 35) + 'px';
-    });
-    
-    link.addEventListener('mouseleave', () => {
-      tooltip.style.display = 'none';
-    });
     
     // Make draggable
     makeDraggable(link);
