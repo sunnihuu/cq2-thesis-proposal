@@ -9,7 +9,7 @@ const icons = [
 ];
 
 // Function to check if two circles overlap
-function isOverlapping(x1, y1, r1, x2, y2, r2, padding = 30) {
+function isOverlapping(x1, y1, r1, x2, y2, r2, padding = 50) {
   const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
   return distance < (r1 + r2 + padding);
 }
@@ -70,22 +70,40 @@ function generateNonOverlappingPositions(count, viewportWidth, viewportHeight) {
 
 function initFloatingIcons() {
   const container = document.getElementById('floating-icons-container');
-  console.log('Initializing floating icons...', container);
+  console.log('Container found:', !!container);
+  
   if (!container) {
-    console.error('Container not found!');
+    console.error('floating-icons-container not found!');
     return;
   }
 
+  // Create tooltip element
+  const tooltip = document.createElement('div');
+  tooltip.id = 'floating-icon-tooltip';
+  tooltip.style.cssText = `
+    position: fixed;
+    background: transparent;
+    color: #000;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 300;
+    display: none;
+    white-space: nowrap;
+    font-family: "Lexend Deca", sans-serif;
+  `;
+  document.body.appendChild(tooltip);
+
   // Generate non-overlapping positions
   const positions = generateNonOverlappingPositions(icons.length, window.innerWidth, window.innerHeight);
-  console.log('Generated positions:', positions);
 
   icons.forEach((icon, index) => {
     // Create anchor element
     const link = document.createElement('a');
     link.href = icon.url;
     link.className = 'floating-icon';
-    link.title = icon.title; // Add tooltip text
+    link.setAttribute('data-index', index);
     
     // Create image element
     const img = document.createElement('img');
@@ -99,6 +117,7 @@ function initFloatingIcons() {
     
     link.style.left = `${pos.x}%`;
     link.style.top = `${pos.y}%`;
+    link.style.position = 'absolute';
 
     // Random animation parameters
     const floatDuration = 15 + Math.random() * 15; // 15-30 seconds
@@ -115,13 +134,27 @@ function initFloatingIcons() {
     link.style.setProperty('--float-delay', `${floatDelay}s`);
     link.style.setProperty('--icon-size', `${pos.size}px`);
     
-    console.log(`Created icon ${index}:`, icon.alt, pos);
+    console.log(`Icon ${index} created:`, icon.alt, 'at', pos.x + '%', pos.y + '%');
+    
+    // Add tooltip hover listeners
+    link.addEventListener('mouseenter', (e) => {
+      tooltip.textContent = icon.title;
+      tooltip.style.display = 'block';
+      
+      const rect = link.getBoundingClientRect();
+      tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+      tooltip.style.top = (rect.top - 35) + 'px';
+    });
+    
+    link.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
     
     // Make draggable
     makeDraggable(link);
   });
   
-  console.log('Floating icons initialized!');
+  console.log('All floating icons initialized!');
 }
 
 // Draggable functionality
