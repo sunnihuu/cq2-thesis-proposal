@@ -59,7 +59,7 @@
       perspective: 1000px;
     }
 
-    #pdf-canvas {
+    #poster-image {
       max-width: 95vw;
       max-height: 90vh;
       width: auto;
@@ -69,9 +69,10 @@
       cursor: grab;
       transition: transform 0.1s ease-out;
       transform-origin: center center;
+      will-change: transform;
     }
 
-    #pdf-canvas.dragging {
+    #poster-image.dragging {
       cursor: grabbing;
     }
 
@@ -180,7 +181,7 @@
 
   <div class="page-shell">
     <main class="page-content">
-      <canvas id="pdf-canvas"></canvas>
+      <img id="poster-image" alt="Poster image" />
     </main>
   </div>
 
@@ -194,13 +195,15 @@
     <a href="index.html" class="home-btn">Home</a>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
-    // Set up PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-    const pdfPath = 'Sunni-Hu-Columbia-GSAPP-CDP-CQ2-urban-food-resilience-poster.pdf';
-    let pdfDoc = null;
+    // Allow overriding the image via URL: poster.html?file=your-poster.png
+    const params = new URLSearchParams(window.location.search);
+    const overrideFile = params.get('file');
+    const imgPath = overrideFile && overrideFile.trim() !== ''
+      ? overrideFile.trim()
+      : 'Sunni-Hu-Columbia-GSAPP-CDP-CQ2-urban-food-resilience-poster.png';
+    const img = document.getElementById('poster-image');
+    const loading = document.getElementById('loading');
     let currentZoom = 1;
     let translateX = 0;
     let translateY = 0;
@@ -208,77 +211,24 @@
     let startX = 0;
     let startY = 0;
 
-    const canvas = document.getElementById('pdf-canvas');
-
-    // Load PDF
-    async function loadPdf() {
-      try {
-        pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
-        renderPage();
-      } catch (error) {
-        console.error('Error loading PDF:', error);
-      }
-    }
-
-    // Render page
-    async function renderPage() {
-      try {
-        const page = await pdfDoc.getPage(1); // Poster is single page
-        const context = canvas.getContext('2d');
-
-        // Calculate scale to fit viewport while maintaining aspect ratio
-        const viewport = page.getViewport({ scale: 1 });
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        
-        // Scale to fit both width and height, using the smaller scale to ensure full visibility
-        const scaleX = windowWidth / viewport.width;
-        const scaleY = windowHeight / viewport.height;
-        const baseScale = Math.min(scaleX, scaleY) * 0.95; // 0.95 for some padding
-
-        // Use higher pixel ratio for very sharp rendering, especially when zoomed
-        const pixelRatio = (window.devicePixelRatio || 1) * 2; // 2x for extra sharpness
-        const scale = baseScale * pixelRatio;
-
-        const scaledViewport = page.getViewport({ scale });
-
-        // Set canvas dimensions with pixel ratio
-        canvas.width = scaledViewport.width;
-        canvas.height = scaledViewport.height;
-        
-        // Set display size
-        canvas.style.width = (scaledViewport.width / pixelRatio) + 'px';
-        canvas.style.height = (scaledViewport.height / pixelRatio) + 'px';
-
-        // Render PDF page
-        const renderContext = {
-          canvasContext: context,
-          viewport: scaledViewport
-        };
-
-        await page.render(renderContext).promise;
-        
-          // Hide loading message
-          document.getElementById('loading').classList.add('hidden');
-      } catch (error) {
-        console.error('Error rendering page:', error);
-      }
-    }
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (pdfDoc) {
-        renderPage();
-      }
-    });
-
-    // Zoom and pan functionality
     function updateTransform() {
-      canvas.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+      img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+    }
+
+    function loadImage() {
+      loading.style.display = 'block';
+      img.onload = () => {
+        document.getElementById('loading').classList.add('hidden');
+        updateTransform();
+      };
+      img.onerror = () => {
+        loading.textContent = 'Failed to load poster image.';
+      };
+      img.src = imgPath;
     }
 
     // Mouse wheel zoom
-    canvas.addEventListener('wheel', (e) => {
+    img.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY > 0 ? -0.1 : 0.1;
       currentZoom = Math.max(0.5, Math.min(5, currentZoom + delta));
@@ -286,11 +236,11 @@
     });
 
     // Pan with drag
-    canvas.addEventListener('mousedown', (e) => {
+    img.addEventListener('mousedown', (e) => {
       isDragging = true;
       startX = e.clientX - translateX;
       startY = e.clientY - translateY;
-      canvas.classList.add('dragging');
+      img.classList.add('dragging');
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -303,7 +253,7 @@
 
     window.addEventListener('mouseup', () => {
       isDragging = false;
-      canvas.classList.remove('dragging');
+      img.classList.remove('dragging');
     });
 
     // Zoom controls
@@ -311,12 +261,10 @@
       currentZoom = Math.min(5, currentZoom + 0.25);
       updateTransform();
     });
-
     document.getElementById('zoom-out').addEventListener('click', () => {
       currentZoom = Math.max(0.5, currentZoom - 0.25);
       updateTransform();
     });
-
     document.getElementById('zoom-reset').addEventListener('click', () => {
       currentZoom = 1;
       translateX = 0;
@@ -324,8 +272,8 @@
       updateTransform();
     });
 
-    // Load PDF on page load
-    loadPdf();
+    // Load image on page load
+    loadImage();
   </script>
 </body>
 </html>
