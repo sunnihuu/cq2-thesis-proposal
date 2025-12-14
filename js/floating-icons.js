@@ -1,11 +1,11 @@
 // Floating and rotating food icons animation
 
 const icons = [
-  { src: 'images/icons/Apple.png', alt: 'Apple', url: '#' },
-  { src: 'images/icons/Broccoli.png', alt: 'Broccoli', url: '#' },
-  { src: 'images/icons/Carrot.png', alt: 'Carrot', url: '#' },
-  { src: 'images/icons/Cherries.png', alt: 'Cherries', url: '#' },
-  { src: 'images/icons/Pear.png', alt: 'Pear', url: '#' }
+  { src: 'images/icons/Apple.png', alt: 'Apple', url: '#', title: 'Data, Audience and Proof of Concept' },
+  { src: 'images/icons/Broccoli.png', alt: 'Broccoli', url: '#', title: 'Methods' },
+  { src: 'images/icons/Carrot.png', alt: 'Carrot', url: '#', title: 'Precedent and References' },
+  { src: 'images/icons/Cherries.png', alt: 'Cherries', url: '#', title: 'Project Overview' },
+  { src: 'images/icons/Pear.png', alt: 'Pear', url: '#', title: 'Conceptual Framework' }
 ];
 
 // Function to check if two circles overlap
@@ -80,6 +80,7 @@ function initFloatingIcons() {
     const link = document.createElement('a');
     link.href = icon.url;
     link.className = 'floating-icon';
+    link.title = icon.title; // Add tooltip text
     
     // Create image element
     const img = document.createElement('img');
@@ -117,6 +118,64 @@ function initFloatingIcons() {
     link.style.setProperty('--float-delay', `${floatDelay}s`);
     link.style.setProperty('--rotate-delay', `${rotateDelay}s`);
     link.style.setProperty('--icon-size', `${pos.size}px`);
+    
+    // Make draggable
+    makeDraggable(link);
+  });
+}
+
+// Draggable functionality
+function makeDraggable(element) {
+  let isDragging = false;
+  let startX, startY, initialLeft, initialTop;
+  
+  element.addEventListener('mousedown', (e) => {
+    if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
+      e.preventDefault();
+      isDragging = true;
+      
+      // Pause animations while dragging
+      element.style.animationPlayState = 'paused';
+      
+      startX = e.clientX;
+      startY = e.clientY;
+      
+      // Get current position
+      const computedStyle = window.getComputedStyle(element);
+      initialLeft = parseFloat(computedStyle.left);
+      initialTop = parseFloat(computedStyle.top);
+      
+      element.style.cursor = 'grabbing';
+    }
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+    
+    element.style.left = `${initialLeft + deltaX}px`;
+    element.style.top = `${initialTop + deltaY}px`;
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      
+      // Resume animations
+      element.style.animationPlayState = 'running';
+      element.style.cursor = '';
+    }
+  });
+  
+  // Prevent default link behavior when dragging
+  element.addEventListener('click', (e) => {
+    if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
+      e.preventDefault();
+    }
   });
 }
 
