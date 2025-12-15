@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Precedent & References - Low Foodprint NYC</title>
+  <title>Precedents & References - Low Foodprint NYC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/page.css" />
   <script type="importmap">
     {
       "imports": {
@@ -18,20 +19,32 @@
   </script>
 </head>
 
-<body class="home">
+<body class="home page-scroll">
   <!-- Three.js background container -->
   <div id="three-container"></div>
 
-  <!-- Floating icons container -->
+  <!-- Floating icons container (empty for Precedents) -->
   <div id="floating-icons-container"></div>
 
-  <main class="home-shell" aria-label="Precedent & References">
+  <style>
+    /* Enable scrolling for this page */
+    body.page-scroll { overflow-y: auto !important; }
+    body.page-scroll .home-shell { height: auto; min-height: 100vh; }
+    body.page-scroll .page-content { 
+      max-height: none; 
+      overflow-y: visible; 
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+  </style>
+
+  <main class="home-shell" aria-label="Precedents & References">
     <!-- Header: Title top-left -->
     <header class="header">
-      <h1 class="title"><a href="index.html">Precedent & References</a></h1>
+      <h1 class="title"><a href="index.html">Precedents & References</a></h1>
     </header>
 
-    <!-- Top right: Navigation -->
+    <!-- Top right: Home button -->
     <nav class="nav-top-right">
       <a href="index.html" class="nav-link">Home</a>
     </nav>
@@ -45,9 +58,160 @@
     <footer class="info-bottom-right">
       <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
     </footer>
+
+    <!-- Main content -->
+    <section class="page-content">
+      <div class="page-top">
+        <a href="index.html" class="back">← Home</a>
+        <h1>Precedents & References</h1>
+      </div>
+
+      <div class="page">
+        <!-- Precedents Section -->
+        <div class="block">
+          <h2>Precedents</h2>
+          
+          <!-- Precedent 1: Project Drawdown -->
+          <div class="precedent">
+            <div class="precedent-image">
+              <img src="images/Project Drawdown.png" alt="Project Drawdown">
+            </div>
+            <div class="precedent-text">
+              <h3>Project Drawdown</h3>
+              <p>
+                Project Drawdown identifies food systems as one of the most powerful leverage points for climate action. By linking diet shifts, food waste reduction, and land use to both emissions reduction and carbon removal, Drawdown frames food as a system that connects everyday behavior with planetary-scale climate processes. This project builds on Drawdown's global framework, but shifts the scale of intervention from abstract global metrics to everyday urban life. Rather than targeting planetary targets directly, it asks how food–climate logic can be translated into neighborhood-scale decision-making and behavioral systems.
+              </p>
+              <p class="precedent-link">
+                <a href="https://drawdown.org" target="_blank" rel="noopener">drawdown.org →</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Precedent 2: NYC Food & Climate Strategy -->
+          <div class="precedent">
+            <div class="precedent-image">
+              <img src="images/fandcstrategy_hero2.png" alt="NYC Food & Climate Strategy">
+            </div>
+            <div class="precedent-text">
+              <h3>NYC Food and Climate Strategy</h3>
+              <p>
+                The NYC Food and Climate Strategy formally recognizes food as a core component of the city's climate response. The strategy prioritizes reducing food-related emissions, eliminating food waste from landfills, and building a resilient and equitable food system. This project aligns with the Strategy's goals, but operates at a different scale. Instead of focusing on policy targets alone, it prototypes behavioral and neighborhood-level systems that can complement municipal tools and support localized implementation of food–climate policy.
+              </p>
+              <p class="precedent-link">
+                <a href="https://www.nyc.gov/site/foodpolicy/reports/food-and-climate-strategy.page" target="_blank" rel="noopener">NYC Food and Climate Strategy →</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Precedent 3: Behavioral & Interface Projects -->
+          <div class="precedent">
+            <div class="precedent-image">
+              <img src="images/Behavioral Climate Interfaces.jpg" alt="Behavioral Interface Example">
+            </div>
+            <div class="precedent-text">
+              <h3>Behavioral Climate Interfaces (Carbon Labeling and Choice Architecture)</h3>
+              <p>
+                A growing body of work explores how information design and behavioral nudging can influence food-related climate decisions, including carbon labeling on menus and choice architecture in food environments. These projects demonstrate that behavior can shift when climate information is made visible at the point of decision. This thesis extends these approaches by embedding behavioral interfaces within a spatial vulnerability framework, rather than treating food choice as an isolated individual action.
+              </p>
+              <p class="precedent-link">
+                <a href="https://www.nature.com/articles/s41467-022-31339-5" target="_blank" rel="noopener">Nature: Carbon Labeling Study →</a>
+              </p>
+            </div>
+          </div>
+
+          <p class="precedent-note">
+            <em>Together, these precedents establish the policy, scientific, and behavioral foundations for this project, while highlighting the need for neighborhood-scale operational systems.</em>
+          </p>
+        </div>
+
+        <!-- Annotated Bibliography Section -->
+        <div class="block">
+          <h2>Annotated Bibliography</h2>
+          
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>Project Drawdown.</strong> <em>Drawdown: The Most Comprehensive Plan Ever Proposed to Reverse Global Warming.</em>
+            </p>
+            <p class="bib-description">Identifies food systems as a top leverage point for emissions reduction and carbon removal, forming a key conceptual foundation for this project.</p>
+            <p class="bib-link"><a href="https://drawdown.org" target="_blank" rel="noopener">drawdown.org</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>NYC Mayor's Office of Food Policy.</strong> <em>NYC Food and Climate Strategy.</em>
+            </p>
+            <p class="bib-description">Provides the policy context for food-related climate action in New York City, including emissions reduction, waste diversion, and resilience planning.</p>
+            <p class="bib-link"><a href="https://www.nyc.gov/site/foodpolicy/reports/food-and-climate-strategy.page" target="_blank" rel="noopener">nyc.gov/foodpolicy</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>IPCC.</strong> <em>Climate Change and Land.</em>
+            </p>
+            <p class="bib-description">Examines the relationship between land use, agriculture, food systems, and climate change at a global scale.</p>
+            <p class="bib-link"><a href="https://www.ipcc.ch/srccl/" target="_blank" rel="noopener">ipcc.ch/srccl</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>FAO.</strong> <em>Food Systems and Climate Change.</em>
+            </p>
+            <p class="bib-description">Analyzes how food systems contribute to greenhouse gas emissions and identifies mitigation pathways.</p>
+            <p class="bib-link"><a href="https://www.fao.org/climate-change/our-work/what-we-do/food-systems/en/" target="_blank" rel="noopener">fao.org/climate-change</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>Shove, Elizabeth et al.</strong> <em>The Dynamics of Social Practice.</em>
+            </p>
+            <p class="bib-description">Provides a framework for understanding everyday behavior as shaped by systems and practices rather than individual choice alone.</p>
+            <p class="bib-link"><a href="https://www.theoryculturesociety.org/book/the-dynamics-of-social-practice/" target="_blank" rel="noopener">theoryculturesociety.org</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>Thaler, Richard H., and Cass R. Sunstein.</strong> <em>Nudge.</em>
+            </p>
+            <p class="bib-description">Introduces behavioral decision theory and choice architecture relevant to food and climate behavior design.</p>
+            <p class="bib-link"><a href="https://www.penguinrandomhouse.com/books/302127/nudge-by-richard-h-thaler-and-cass-r-sunstein/" target="_blank" rel="noopener">Penguin Random House</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>USDA.</strong> <em>Household Food Security in the United States.</em>
+            </p>
+            <p class="bib-description">Offers definitions and metrics for food insecurity and household vulnerability used as background for this project.</p>
+            <p class="bib-link"><a href="https://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-u-s/" target="_blank" rel="noopener">ers.usda.gov</a></p>
+          </div>
+
+          <div class="bibliography-item">
+            <p class="bib-entry">
+              <strong>NYC Open Data Portal.</strong> <em>Food, Health, and Demographics Datasets.</em>
+            </p>
+            <p class="bib-description">Primary source for spatial, demographic, and food-related datasets used in the project.</p>
+            <p class="bib-link"><a href="https://opendata.cityofnewyork.us/" target="_blank" rel="noopener">opendata.cityofnewyork.us</a></p>
+          </div>
+        </div>
+
+        <!-- Data Sources Section -->
+        <div class="block">
+          <h2>Data Sources and Provenance</h2>
+          
+          <p>
+            This project draws on publicly available datasets from NYC Open Data, the American Community Survey, and the NYC Department of Health. These datasets reflect administrative definitions and reporting practices that shape how food vulnerability is measured and represented. Rather than treating data as neutral facts, the project understands them as situated indicators that require interpretation within social, economic, and policy contexts.
+          </p>
+
+          <p>
+            The project is data-driven and interface-based and does not rely on physical sensors at this stage.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Scripts: Use same background and page utilities -->
+  <!-- Scripts: Use same background as other pages -->
   <script type="module" src="js/three-background.js"></script>
+  <script src="js/page.js"></script>
+  <script type="module" src="js/footer.js"></script>
 </body>
 </html>
