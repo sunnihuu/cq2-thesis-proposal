@@ -33,10 +33,12 @@
     .cf-shell { position: relative; z-index: 15; width: 100%; min-height: 100vh; padding: 100px 32px 140px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
 
     /* A. Core claim */
-    .core-claim { text-align: center; max-width: 980px; }
-    .core-claim h2 { margin: 0; font-size: clamp(22px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
-    .core-claim p.sub { margin: 10px 0 0; color: #555; font-size: clamp(12px, 1.2vw, 16px); }
-    .core-claim p.copy { margin: 14px auto 0; color: #333; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.7; max-width: 760px; }
+    .core-claim { text-align: left; max-width: 980px; }
+    .core-claim h2 { margin: 0; font-size: clamp(20px, 3vw, 36px); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
+    .core-claim p.intro { margin: 16px 0 24px; color: #333; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.8; }
+    .core-claim h3 { margin: 24px 0 8px; font-size: clamp(16px, 1.6vw, 20px); font-weight: 600; color: var(--fg); }
+    .core-claim p.dimension { margin: 0 0 20px; color: #333; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.7; }
+    .core-claim p.closing { margin: 24px 0 0; color: #333; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.7; font-style: italic; }
 
     /* B. Big diagram */
     .concept-graphic { width: min(1100px, 92vw); height: min(78vh, 720px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: relative; z-index: 15; }
@@ -60,10 +62,33 @@
 
     <!-- A. Core Claim -->
     <section class="core-claim">
-      <h2>Food is not only consumption—it is climate infrastructure.</h2>
-      <p class="sub">It moves emissions, risk, and inequality through everyday urban systems.</p>
-      <p class="copy">
-        Food is not only a consumer good—it is climate infrastructure. Across production, processing, distribution, and retail, food systems move carbon, price signals, and risk through urban networks. Yet these infrastructures are unevenly accessible: storage capacity, affordability, and retail geographies make climate and food insecurity spatially patterned. This project frames the city as the critical scale where global food–climate dynamics become governable and where everyday choices can aggregate into systemic change.
+      <h2>Conceptual Framework</h2>
+      <p class="intro">
+        This project is grounded in the understanding of food as a form of urban climate infrastructure. The framework brings together four interrelated dimensions that shape how food systems operate in cities and how vulnerability emerges.
+      </p>
+
+      <h3>Carbon</h3>
+      <p class="dimension">
+        Food systems generate significant greenhouse gas emissions through production, processing, transportation, storage, and waste. At the global scale, food, agriculture, and land use account for roughly one quarter of total emissions, placing food among the core systems driving climate change alongside buildings and transportation.
+      </p>
+
+      <h3>Infrastructure</h3>
+      <p class="dimension">
+        In dense cities like New York, food functions as a distributed infrastructure. Daily life depends on continuous flows of goods, energy, labor, and logistics. Disruptions to these flows, whether caused by climate events, economic shocks, or supply chain failures, directly affect access, affordability, and stability.
+      </p>
+
+      <h3>Inequality</h3>
+      <p class="dimension">
+        Food systems reflect and reproduce social and economic inequality. Income, housing conditions, and neighborhood infrastructure shape how people obtain, store, and consume food. Vulnerability is not evenly distributed, and certain communities bear disproportionate exposure to food-related risk.
+      </p>
+
+      <h3>Risk</h3>
+      <p class="dimension">
+        Climate change increases the frequency and severity of disruptions that affect food systems. Flooding, heat, energy outages, and transportation failures translate into food stress at the household and neighborhood level. Food risk is therefore not only environmental, but also economic and social.
+      </p>
+
+      <p class="closing">
+        Together, these four dimensions position food not as a background aspect of urban life, but as an active climate system. This framework connects global food–climate research, such as Project Drawdown, with New York City's policy context, including the NYC Food and Climate Strategy. It establishes the basis for analyzing where food vulnerability accumulates spatially and for identifying everyday behavioral decision points as sites of design intervention.
       </p>
     </section>
 
@@ -93,6 +118,7 @@
   <!-- Scripts: Use same background and page utilities -->
   <script type="module" src="js/three-background.js"></script>
   <script type="module" src="js/conceptual-sankey-init.js"></script>
+  <script type="module" src="js/footer.js"></script>
 
   <!-- Scale overlay canvas -->
   <div id="scale-overlay" class="overlay" style="display:none;">

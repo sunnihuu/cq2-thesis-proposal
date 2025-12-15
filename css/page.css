@@ -279,6 +279,22 @@ Complements css/style.css with layout and interaction styles
   color: #333;
 }
 
+.precedent-link {
+  margin-top: 0.8rem !important;
+  font-size: 0.9rem;
+}
+
+.precedent-link a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.precedent-link a:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 .precedent-note {
   margin: 2rem 0 0 0;
   padding: 1.5rem;
@@ -318,6 +334,22 @@ Complements css/style.css with layout and interaction styles
   font-size: 0.9rem;
   color: #666;
   line-height: 1.6;
+}
+
+.bib-link {
+  margin: 0.4rem 0 0 0;
+  font-size: 0.85rem;
+}
+
+.bib-link a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.bib-link a:hover {
+  opacity: 0.7;
+  text-decoration: underline;
 }
 
 /* Responsive precedents */
