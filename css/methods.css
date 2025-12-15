@@ -1,0 +1,103 @@
+:root{
+  --bg: #fafaf9;
+  --card: rgba(255,255,255,0.9);
+  --stroke: #d8d8d8;
+  --text: #222;
+  --muted: #666;
+  --soft: #444;
+  --accentFill: #f2f7eb;
+  --accentStroke: #a8c48a;
+}
+
+*{ box-sizing:border-box; }
+
+body.methods-page{
+  margin:0;
+  font-family: "Lexend Deca", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.methods-shell{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+.methods-header{
+  margin-bottom: 18px;
+}
+.methods-title{
+  margin:0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.methods-subtitle{
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.methods-grid{
+  display: grid;
+  gap: 16px;
+}
+
+.methods-block{
+  background: var(--card);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.block-head h2{
+  margin: 2px 0 2px;
+  font-size: 15px;
+  font-weight: 650;
+}
+.block-head p{
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chart-card{
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  background: rgba(250,250,249,0.65);
+}
+
+/* Tooltip shared */
+.chart-tooltip{
+  position: absolute;
+  pointer-events: none;
+  max-width: 260px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--soft);
+}
+.chart-tooltip strong{
+  color: var(--text);
+}
+.chart-tooltip ul{
+  margin: 8px 0 6px 18px;
+  padding: 0;
+}
+.chart-tooltip li{
+  margin: 2px 0;
+}
+.chart-tooltip .aff{
+  margin-top: 6px;
+  color: var(--muted);
+}
