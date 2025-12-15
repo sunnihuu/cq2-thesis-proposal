@@ -165,7 +165,7 @@ a {
   margin: 0;
   line-height: 1.2;
   color: var(--fg);
-  max-width: 280px;
+  white-space: nowrap;
 }
 
 .title a {
