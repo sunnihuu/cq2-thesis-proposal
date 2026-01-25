@@ -19,64 +19,88 @@
   </script>
 </head>
 
-<body class="home methods-scrollable">
+<body class="home">
   <!-- Three.js background container -->
   <div id="three-container"></div>
 
   <!-- Floating icons container (empty for Methods) -->
   <div id="floating-icons-container"></div>
 
-  <!-- Header: Title top-left (fixed) -->
-  <header class="header" style="position: fixed; top: 32px; left: 32px; z-index: 1000;">
-    <h1 class="title"><a href="index.html">Methods</a></h1>
-    <p class="subtitle">A method-driven workflow from spatial diagnosis to behavioral intervention.</p>
+  <!-- Header: Title top-left -->
+  <header class="header">
+    <h1 class="title"><a href="index.html">Project Methods</a></h1>
   </header>
 
-  <!-- Top right: Home button (fixed) -->
-  <nav class="nav-top-right" style="position: fixed; top: 32px; right: 32px; z-index: 1000;">
+  <!-- Top right: Home button -->
+  <nav class="nav-top-right">
     <a href="index.html" class="nav-link">Home</a>
   </nav>
 
-  <!-- Page 1: Computational Workflow -->
-  <section class="methods-page-section">
-    <div class="methods-shell">
-      <div class="methods-block">
-        <div class="block-head">
-          <h2>Computational Workflow</h2>
-          <p>From spatial synthesis to diagnostic targets.</p>
+  <!-- Methods layout -->
+  <main class="home-shell" aria-label="Project Methods" style="position: relative; min-height: 100vh;">
+
+    <section style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: min(1100px, 92vw); max-height: 78vh; padding: 0 12px; pointer-events: none;">
+      <div style="max-height: 78vh; overflow: auto; padding: 8px 0 4px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: start; pointer-events: auto;">
+      <article style="background: rgba(255,255,255,0.92); border-radius: 12px; padding: 20px 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.06); display: flex; flex-direction: column; min-height: 420px; max-height: 520px;">
+        <h3 style="margin: 0 0 6px; font-size: clamp(16px, 1.6vw, 20px);">1. Multi-Scalar Spatial Analysis</h3>
+        <div style="flex: 1; min-height: 0; overflow: auto; padding-right: 4px;">
+          <p style="margin: 0 0 10px; color: #222; font-weight: 600;">Purpose</p>
+          <p style="margin: 0 0 12px; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">To examine how urban food systems operate across global, city, and neighborhood scales.</p>
+          <p style="margin: 0 0 8px; color: #222; font-weight: 600;">What was done</p>
+          <ul style="margin: 0 0 12px 16px; padding: 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">
+            <li>Mapped food-related indicators including food prices, restaurant density, and household food practices at the city scale.</li>
+            <li>Related neighborhood-level conditions to broader food distribution networks and logistical systems operating beyond the neighborhood.</li>
+          </ul>
+          <p style="margin: 0; color: #222; font-weight: 600;">Why it matters</p>
+          <p style="margin: 4px 0 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">Situates everyday food practices within larger infrastructural systems rather than treating them as isolated local conditions.</p>
         </div>
-        <div id="workflow-strip" class="chart-card"></div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- Page 2: Design Methods -->
-  <section class="methods-page-section">
-    <div class="methods-shell">
-      <div class="methods-block">
-        <div class="block-head">
-          <h2>Design Methods</h2>
-          <p>Organized from strategic stances to concrete practices.</p>
+      <article style="background: rgba(255,255,255,0.92); border-radius: 12px; padding: 20px 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.06); display: flex; flex-direction: column; min-height: 420px; max-height: 520px;">
+        <h3 style="margin: 0 0 6px; font-size: clamp(16px, 1.6vw, 20px);">2. Index-Based Exploration of Food Vulnerability</h3>
+        <div style="flex: 1; min-height: 0; overflow: auto; padding-right: 4px;">
+          <p style="margin: 0 0 10px; color: #222; font-weight: 600;">Purpose</p>
+          <p style="margin: 0 0 12px; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">To explore how food-related vulnerability and exposure are unevenly distributed across neighborhoods.</p>
+          <p style="margin: 0 0 8px; color: #222; font-weight: 600;">What was done</p>
+          <ul style="margin: 0 0 12px 16px; padding: 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">
+            <li>Developed an exploratory Food Vulnerability Index combining normalized measures of restaurant density, household food storage capacity, and poverty.</li>
+            <li>Used the index as a comparative and diagnostic tool to surface spatial patterns rather than as a definitive metric.</li>
+          </ul>
+          <p style="margin: 0; color: #222; font-weight: 600;">Why it matters</p>
+          <p style="margin: 4px 0 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">Surfaces spatial patterns to prompt inquiry instead of ranking neighborhoods or fixing classifications.</p>
         </div>
-        <div id="design-pack" class="chart-card"></div>
-      </div>
-    </div>
+      </article>
 
-    <!-- Bottom left: Name (on page 2) -->
-    <div class="info-bottom-left">
-      <p class="info-text">Sunni Hu</p>
-    </div>
+      <article style="background: rgba(255,255,255,0.92); border-radius: 12px; padding: 20px 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.06); display: flex; flex-direction: column; min-height: 420px; max-height: 520px;">
+        <h3 style="margin: 0 0 6px; font-size: clamp(16px, 1.6vw, 20px);">3. Interpretive Interface Prototyping</h3>
+        <div style="flex: 1; min-height: 0; overflow: auto; padding-right: 4px;">
+          <p style="margin: 0 0 10px; color: #222; font-weight: 600;">Purpose</p>
+          <p style="margin: 0 0 12px; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">To make infrastructural relationships legible and comparable across scales.</p>
+          <p style="margin: 0 0 8px; color: #222; font-weight: 600;">What was done</p>
+          <ul style="margin: 0 0 12px 16px; padding: 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">
+            <li>Brought together food flows, freight routes, infrastructural concentration, and health exposure within a shared spatial interface.</li>
+            <li>Designed the interface to support interpretation and discussion rather than service delivery or behavior change.</li>
+          </ul>
+          <p style="margin: 0; color: #222; font-weight: 600;">Why it matters</p>
+          <p style="margin: 4px 0 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">Treats prototyping as a form of inquiry that examines how visual structure and comparison shape understanding of urban climate infrastructure.</p>
+        </div>
+      </article>
+        </div>
+      </section>
+  </main>
 
-    <!-- Bottom right: Credits (on page 2) -->
-    <footer class="info-bottom-right">
-      <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
-    </footer>
-  </section>
+  <!-- Bottom left: Name -->
+  <div class="info-bottom-left">
+    <p class="info-text">Sunni Hu</p>
+  </div>
+
+  <!-- Bottom right: Credits -->
+  <footer class="info-bottom-right">
+    <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
+  </footer>
 
   <!-- Scripts: Use same background as other pages -->
   <script type="module" src="js/three-background.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script type="module" src="js/methods-init.js"></script>
-  <script type="module" src="js/footer.js"></script>
+  <script src="js/footer.js"></script>
 </body>
 </html>

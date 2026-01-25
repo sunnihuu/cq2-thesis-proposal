@@ -227,22 +227,22 @@
   <div id="floating-icons-container"></div>
 
   <main class="home-shell" aria-label="Proof of Concept">
-    <!-- Header: Title top-left (fixed) -->
-    <header class="header" style="position: fixed; top: 32px; left: 32px; z-index: 1000;">
+    <!-- Header: Title top-left -->
+    <header class="header">
       <h1 class="title"><a href="index.html">Proof of Concept</a></h1>
     </header>
 
-    <!-- Top right: Navigation (fixed) -->
-    <nav class="nav-top-right" style="position: fixed; top: 32px; right: 32px; z-index: 1000;">
+    <!-- Top right: Navigation -->
+    <nav class="nav-top-right">
       <a href="index.html" class="nav-link">Home</a>
     </nav>
 
-    <!-- Bottom left: Name (fixed) -->
+    <!-- Bottom left: Name -->
     <div class="info-bottom-left">
       <p class="info-text">Sunni Hu</p>
     </div>
 
-    <!-- Bottom right: Credits (fixed) -->
+    <!-- Bottom right: Credits -->
     <footer class="info-bottom-right">
       <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
     </footer>
@@ -250,90 +250,59 @@
     <!-- Scrollable content -->
     <section class="poc-shell">
       <div class="poc-container">
-    <section class="page-content">
-      <div class="page-top">
-        <a href="index.html" class="back">← Home</a>
-        <h1>Proof of Concept</h1>
-      </div>
-
-      <div class="page">
-        <!-- SECTION 1: Food Vulnerability Index -->
+        <!-- Intro -->
         <div class="poc-section block">
           <h2>Food Vulnerability Index</h2>
-          
-          <!-- 2x2 Grid of images -->
-          <div class="poc-grid">
-            <div class="poc-grid-item">
-              <img src="images/Poverty Map.png" alt="Poverty layer">
-              <p>Poverty</p>
-            </div>
-            <div class="poc-grid-item">
-              <img src="images/Consumption Proxy Map.png" alt="Consumption layer">
-              <p>Consumption</p>
-            </div>
-            <div class="poc-grid-item">
-              <img src="images/Household Storage Proxy Map.png" alt="Storage layer">
-              <p>Storage</p>
-            </div>
-            <div class="poc-grid-item">
-              <img src="images/Food Vulnerability Index – Composite Ma.png" alt="Composite Index">
-              <p>Composite Index</p>
-            </div>
-          </div>
-
           <p>
-            The Food Vulnerability Index combines three urban conditions: economic pressure, food consumption intensity, and household food storage capacity. These layers were normalized and synthesized to identify neighborhoods where food stress is structurally concentrated. The index does not measure access alone, but the ability of neighborhoods to absorb disruption.
+            The Food Vulnerability Index combines three urban conditions that shape everyday food stability: economic pressure, food consumption intensity, and household food storage capacity. Rather than measuring access alone, the index highlights where neighborhoods are structurally less able to absorb disruption in food supply, price, or climate conditions.
           </p>
         </div>
 
-        <!-- SECTION 2: Key Findings -->
+        <!-- Layers (three maps) -->
         <div class="poc-section block">
-          <h2>Key Findings</h2>
-          
-          <img src="images/Food Vulnerability Index – Composite Ma.png" alt="Composite vulnerability map with clusters highlighted" class="poc-image-full">
-          
-          <h3>Vulnerability Clusters</h3>
-          <ul class="poc-findings">
-            <li>Food vulnerability clusters in areas with high consumption, high poverty, and low storage.</li>
-            <li>These neighborhoods depend heavily on continuous food flows and delivery systems.</li>
-            <li>When disruption occurs, they are structurally more exposed to supply, price, and climate shocks.</li>
-          </ul>
-        </div>
-
-        <!-- SECTION 3: From Mapping to Behavior -->
-        <div class="poc-section block">
-          <h2>From Mapping to Behavior</h2>
-          
-          <div class="poc-flow">
-            <div class="poc-flow-item">Mapping</div>
-            <div class="poc-flow-item">Decision</div>
-            <div class="poc-flow-item">Behavior</div>
-            <div class="poc-flow-item">Risk</div>
+          <h3>Index construction</h3>
+          <div class="poc-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            <div class="poc-grid-item">
+              <img src="images/Poverty Map.png" alt="High poverty layer">
+              <p>High poverty</p>
+            </div>
+            <div class="poc-grid-item">
+              <img src="images/Consumption Proxy Map.png" alt="High consumption layer">
+              <p>High consumption</p>
+            </div>
+            <div class="poc-grid-item">
+              <img src="images/Household Storage Proxy Map.png" alt="Low household storage layer">
+              <p>Low household storage</p>
+            </div>
           </div>
-
           <p>
-            Mapping is not the endpoint of this project. The goal is not only to show where vulnerability exists, but to identify where everyday decisions can intervene. Food risk is lived through daily behavior—shopping frequency, substitution, storage, and waste. These decision points become the operational entry points for design.
+            Each layer was normalized and synthesized to examine how different forms of food-related stress overlap spatially. Individually, these conditions are unevenly distributed across the city. When combined, they reveal neighborhoods where food vulnerability is structurally concentrated rather than episodic.
           </p>
         </div>
 
-        <!-- SECTION 4: Audience -->
+        <!-- Composite map -->
         <div class="poc-section block">
-          <h2>Audience</h2>
-          
-          <div class="poc-audience">
-            <div class="poc-audience-card">
-              <h4>Primary</h4>
-              <p>Residents in high-vulnerability neighborhoods</p>
-            </div>
-            <div class="poc-audience-card">
-              <h4>Secondary</h4>
-              <p>Community organizations and local food initiatives</p>
-            </div>
-            <div class="poc-audience-card">
-              <h4>Supporting</h4>
-              <p>Policy actors and planners</p>
-            </div>
-          </div>
+          <h3>Composite Food Vulnerability Index</h3>
+          <img src="images/Food Vulnerability Index – Composite Ma.png" alt="Composite Food Vulnerability Index map" class="poc-image-full">
+          <p>
+            The composite index reveals clusters of food vulnerability across multiple boroughs, including the South Bronx, East Harlem, Brownsville and East New York, Sunset Park, Long Island City and Astoria, and the North Shore of Staten Island. While some of these areas align with conventional narratives of poverty and food access, others reflect a different condition. High vulnerability emerges where high consumption demand and limited household storage intersect, even in areas not traditionally framed as food insecure.
+          </p>
+        </div>
+
+        <!-- What it made visible -->
+        <div class="poc-section block">
+          <h3>What the index made visible</h3>
+          <p>
+            Across these neighborhoods, vulnerability is closely tied to dependence on continuous food flows and delivery systems. Food stability relies less on proximity or access, and more on uninterrupted logistics, refrigeration, and distribution infrastructure. This insight reframes food vulnerability as a question of infrastructural dependence rather than individual behavior or neighborhood isolation.
+          </p>
+        </div>
+
+        <!-- Why it matters -->
+        <div class="poc-section block">
+          <h3>Why this matters for the project</h3>
+          <p>
+            The Food Vulnerability Index functions as a diagnostic tool that shifts the project’s focus from consumption endpoints to the infrastructural systems that sustain them. Rather than serving as a final metric, the index identifies where further investigation into food logistics and climate exposure is necessary.
+          </p>
         </div>
       </div>
     </section>
@@ -343,5 +312,4 @@
   <script type="module" src="js/three-background.js"></script>
   <script src="js/footer.js"></script>
 </body>
-</html>
 </html>

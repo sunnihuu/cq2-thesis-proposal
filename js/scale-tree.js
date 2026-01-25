@@ -34,7 +34,7 @@
     name: "Multi-Scalar Framing:\nFood Systems, Infrastructure,\nand Urban Life", // Diagram caption, not primary node
     children: [
       {
-        name: "Global food–climate\nsystems",
+        name: "Global food and climate\nsystems",
         children: [
           { name: "System: agriculture + processing + trade" },
           { name: "Signals: emissions factors, subsidies, price signals" },
@@ -60,7 +60,7 @@
       {
         name: "Interpretive Interface", // Core intervention - single line for emphasis
         children: [
-          { name: "Signal: infrastructural intensity, flows" },
+          { name: "Signals: infrastructural intensity, flows" },
           { name: "Mechanism: comparison, spatial framing" },
           { name: "Output: visibility + interpretability" }
         ]

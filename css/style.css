@@ -252,7 +252,7 @@ button.nav-link {
 /* Bottom-left: Placeholder name */
 .info-bottom-left {
   position: absolute;
-  bottom: 32px;
+  bottom: 12px;
   left: 32px;
   z-index: 20;
 }
@@ -260,7 +260,7 @@ button.nav-link {
 /* Bottom-right: Credits */
 .info-bottom-right {
   position: absolute;
-  bottom: 32px;
+  bottom: 12px;
   right: 32px;
   z-index: 20;
 }
@@ -671,7 +671,7 @@ p {
   
   .info-bottom-left,
   .info-bottom-right {
-    bottom: 20px;
+    bottom: 12px;
   }
   
   .info-bottom-left {

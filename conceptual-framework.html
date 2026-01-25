@@ -28,97 +28,45 @@
   <style>
     /* Enable scroll on this page (override global hidden overflow) */
     body.page-scroll { overflow-y: auto !important; }
-
-    /* Centered content shell */
-    .cf-shell { position: relative; z-index: 15; width: 100%; min-height: 100vh; padding: 100px 32px 140px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
-
-    /* A. Core claim */
-    .core-claim { text-align: left; max-width: 980px; }
-    .core-claim h2 { margin: 0; font-size: clamp(20px, 3vw, 36px); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
-    .core-claim p.intro { margin: 16px 0 24px; color: #333; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.8; }
-    .core-claim h3 { margin: 24px 0 8px; font-size: clamp(16px, 1.6vw, 20px); font-weight: 600; color: var(--fg); }
-    .core-claim p.dimension { margin: 0 0 20px; color: #333; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.7; }
-    .core-claim p.closing { margin: 24px 0 0; color: #333; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.7; font-style: italic; }
-
-    /* B. Big diagram */
-    .concept-graphic { width: min(1100px, 92vw); height: min(78vh, 720px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: relative; z-index: 15; }
-    #concept-sankey { width: 100%; height: 100%; min-height: 420px; }
-    .chart-caption { margin: 0; font-size: 12px; color: #666; }
-
-    /* C. Bottom footnote */
-    .concept-footnote { width: min(980px, 92vw); margin: 8px 0 0; color: #444; font-size: clamp(11px, 1vw, 13px); line-height: 1.6; text-align: center; }
   </style>
 
-  <main class="cf-shell" aria-label="Conceptual Framework">
+  <main class="home-shell" aria-label="Conceptual Framework">
     <!-- Header: Title top-left -->
-    <header class="header" style="position: fixed; top: 32px; left: 32px; z-index: 1000;">
+    <header class="header">
       <h1 class="title"><a href="index.html">Conceptual Framework</a></h1>
     </header>
 
     <!-- Top right: Navigation consistent with home -->
-    <nav class="nav-top-right" style="position: fixed; top: 32px; right: 32px; z-index: 1000;">
+    <nav class="nav-top-right">
+      <button id="toggle-scale" class="nav-link" style="appearance:none;">Scale</button>
       <a href="index.html" class="nav-link">Home</a>
     </nav>
 
-    <!-- A. Core Claim -->
-    <section class="core-claim">
-      <h2>Conceptual Framework</h2>
-      <p class="intro">
-        This project is grounded in the understanding of food as a form of urban climate infrastructure. The framework brings together four interrelated dimensions that shape how food systems operate in cities and how vulnerability emerges.
-      </p>
-
-      <h3>Carbon</h3>
-      <p class="dimension">
-        Food systems generate significant greenhouse gas emissions through production, processing, transportation, storage, and waste. At the global scale, food, agriculture, and land use account for roughly one quarter of total emissions, placing food among the core systems driving climate change alongside buildings and transportation.
-      </p>
-
-      <h3>Infrastructure</h3>
-      <p class="dimension">
-        In dense cities like New York, food functions as a distributed infrastructure. Daily life depends on continuous flows of goods, energy, labor, and logistics. Disruptions to these flows, whether caused by climate events, economic shocks, or supply chain failures, directly affect access, affordability, and stability.
-      </p>
-
-      <h3>Inequality</h3>
-      <p class="dimension">
-        Food systems reflect and reproduce social and economic inequality. Income, housing conditions, and neighborhood infrastructure shape how people obtain, store, and consume food. Vulnerability is not evenly distributed, and certain communities bear disproportionate exposure to food-related risk.
-      </p>
-
-      <h3>Risk</h3>
-      <p class="dimension">
-        Climate change increases the frequency and severity of disruptions that affect food systems. Flooding, heat, energy outages, and transportation failures translate into food stress at the household and neighborhood level. Food risk is therefore not only environmental, but also economic and social.
-      </p>
-
-      <p class="closing">
-        Together, these four dimensions position food not as a background aspect of urban life, but as an active climate system. This framework connects global food–climate research, such as Project Drawdown, with New York City's policy context, including the NYC Food and Climate Strategy. It establishes the basis for analyzing where food vulnerability accumulates spatially and for identifying everyday behavioral decision points as sites of design intervention.
-      </p>
-    </section>
-
-    <!-- B. Conceptual Sankey Diagram -->
-    <section class="concept-graphic">
-      <div id="concept-sankey" role="img" aria-label="Conceptual flow from systems to everyday levers"></div>
-      <p class="chart-caption">Food as climate infrastructure: how systemic flows translate into everyday levers.</p>
-    </section>
-
-    <!-- C. Minimal context footnote -->
-    <section class="concept-footnote">
-      <div>Project Drawdown: Food systems are central levers for climate solutions.</div>
-      <div>NYC context: NYC recognizes food–climate connections through policy and procurement, but neighborhood conditions remain unequal.</div>
-      <div>Why city scale: Cities are where global flows become governable and everyday behavior can aggregate into systemic change.</div>
-    </section>
-
-    <!-- Corner elements (fixed and unchanged) -->
+    <!-- Bottom left: Name -->
     <div class="info-bottom-left">
       <p class="info-text">Sunni Hu</p>
     </div>
+
+    <!-- Bottom right: Credits -->
     <footer class="info-bottom-right">
       <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
     </footer>
 
+    <!-- Center: Framework text -->
+    <section style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); text-align: left; z-index: 15; width: 90vw; max-width: none; padding: 0 32px; pointer-events: none; overflow: auto; max-height: 80vh;">
+      <div style="text-align: left; margin: 0 auto; font-size: clamp(12px, 1.2vw, 16px); line-height: 1.75; color: #333; max-width: 700px; pointer-events: auto;">
+        <p style="margin: 0 0 12px 0; color: #444;">This project is grounded in a conceptual framework that understands urban food systems as a form of climate infrastructure. Rather than approaching food systems only through questions of access, consumption, or individual behavior, the framework treats them as interconnected systems that sustain everyday urban life while simultaneously producing uneven environmental and health exposures across the city.</p>
+        <p>A central premise of the framework is that food related vulnerability is not an isolated neighborhood condition, but the outcome of broader systems operating across multiple scales. Urban food systems are examined at global, city, and neighborhood levels, recognizing that decisions, efficiencies, and flows at larger scales often shape localized conditions of exposure. Processes such as food logistics, cold chain operations, regulatory structures, and infrastructural concentration play a significant role in determining where environmental and health burdens are experienced.</p>
+        <p>The framework brings together three closely related dimensions. First, it considers how urban food systems operate across multiple spatial scales, linking global supply chains and citywide distribution networks to neighborhood level conditions. Second, it emphasizes the uneven distribution of benefits and burdens embedded within these systems, where citywide food availability and affordability depend on infrastructural systems that concentrate emissions, noise, and air pollution in specific communities. Third, it introduces interpretive tools that help make these relationships visible and understandable for audiences engaged in community advocacy and planning.</p>
+        <p>Within this conceptual structure, design and visualization are positioned as modes of inquiry rather than solution delivery. Instead of prescribing behavioral change or proposing singular interventions, the framework uses visual and spatial tools to clarify how food systems function as climate infrastructure and how their impacts are distributed. By situating neighborhood level exposure within broader food and climate systems, the framework supports more informed discussion, interpretation, and advocacy around urban climate resilience.</p>
+      </div>
+    </section>
   </main>
 
   <!-- Scripts: Use same background and page utilities -->
   <script type="module" src="js/three-background.js"></script>
-  <script type="module" src="js/conceptual-sankey-init.js"></script>
-  <script type="module" src="js/footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="js/footer.js"></script>
 
   <!-- Scale overlay canvas -->
   <div id="scale-overlay" class="overlay" style="display:none;">
