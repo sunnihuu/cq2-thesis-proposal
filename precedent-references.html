@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/page.css" />
   <script type="importmap">
     {
       "imports": {
@@ -19,7 +18,7 @@
   </script>
 </head>
 
-<body class="home page-scroll">
+<body class="home">
   <!-- Three.js background container -->
   <div id="three-container"></div>
 
@@ -27,14 +26,63 @@
   <div id="floating-icons-container"></div>
 
   <style>
-    /* Enable scrolling for this page */
-    body.page-scroll { overflow-y: auto !important; }
-    body.page-scroll .home-shell { height: auto; min-height: 100vh; }
-    body.page-scroll .page-content { 
-      max-height: none; 
-      overflow-y: visible; 
-      padding-top: 120px;
-      padding-bottom: 100px;
+    /* Centered scrollable overlay */
+    .refs-shell {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1100px;
+      max-height: 78vh;
+      padding: 0 12px;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .refs-container {
+      max-height: 78vh;
+      overflow: auto;
+      padding: 8px 0 4px;
+      pointer-events: auto;
+      margin: 0;
+    }
+
+    .refs-section {
+      margin-bottom: 3rem;
+    }
+
+    .refs-section h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 700;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+
+    .refs-section p {
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      color: #333;
+      margin: 0 0 1rem 0;
+      max-width: 78ch;
+    }
+
+    .ref-title {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .ref-title:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .refs-shell {
+        padding: 0 16px;
+      }
     }
   </style>
 
@@ -49,10 +97,58 @@
       <a href="index.html" class="nav-link">Home</a>
     </nav>
 
-    
+    <!-- Bottom left: Name -->
+    <div class="info-bottom-left">
+      <p class="info-text">Sunni Hu</p>
+    </div>
+
+    <!-- Bottom right: Credits -->
+    <footer class="info-bottom-right">
+      <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
+    </footer>
+
+    <!-- Scrollable content -->
+    <section class="refs-shell">
+      <div class="refs-container">
+        <div class="refs-section">
+          <h2>Urban Food Systems as Infrastructure</h2>
+          <p><strong><a href="https://journals.sagepub.com/doi/10.1068/a3343" class="ref-title" target="_blank">The Food System: A Stranger to the Planning Field</a></strong> Kameshwari Pothukuchi and Jerome L. Kaufman. This foundational planning text explains why food systems have historically been excluded from urban infrastructure and planning discourse. It provides critical grounding for reframing food systems as legitimate objects of urban and climate planning.</p>
+          <p><strong><a href="https://www.routledge.com/Urban-Food-Systems-Governance/Cohen/p/book/9781138497530" class="ref-title" target="_blank">Urban Food Systems Governance</a></strong> Nevin Cohen. Cohen's work situates food systems within urban governance, emphasizing distribution, regulation, and infrastructure rather than access alone. This supports the project's shift toward structural and infrastructural analysis.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Climate Infrastructure and Urban Resilience</h2>
+          <p><strong><a href="https://www.routledge.com/Splintering-Urbanism/Graham-Marvin/p/book/9780415206402" class="ref-title" target="_blank">Splintering Urbanism: Networked Infrastructures, Technological Mobilities and the Urban Condition</a></strong> Stephen Graham and Simon Marvin. This text provides a foundational framework for understanding how infrastructure systems distribute reliability and risk unevenly across cities. It directly informs the project's analysis of food logistics and cold chain systems as infrastructures that produce uneven exposure.</p>
+          <p><strong><a href="https://www.cornellpress.cornell.edu/book/9780801474995/the-just-city/" class="ref-title" target="_blank">The Just City</a></strong> Susan S. Fainstein. Fainstein's framework foregrounds equity and justice in urban systems, supporting the project's emphasis on how infrastructural benefits and burdens are distributed spatially rather than assumed to be neutral.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Environmental Justice and Infrastructural Burden</h2>
+          <p><strong><a href="https://www.routledge.com/Dumping-in-Dixie/Bullard/p/book/9780813367927" class="ref-title" target="_blank">Dumping in Dixie: Race, Class, and Environmental Quality</a></strong> Robert D. Bullard. Bullard's work establishes environmental justice as a framework for understanding how environmental harms are systematically concentrated in marginalized communities. This informs the project's treatment of neighborhood exposure as structurally produced.</p>
+          <p><strong><a href="https://www.politybooks.com/bookdetail/?isbn=9781509543722" class="ref-title" target="_blank">Why Green Cities Are Not Enough</a></strong> Isabelle Anguelovski et al. This research highlights how climate and sustainability initiatives can reproduce uneven outcomes, reinforcing the need to examine who bears the burdens of climate-related infrastructure.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Logistics, Distribution, and Urban Metabolism</h2>
+          <p><strong><a href="https://www.routledge.com/The-City-as-a-Terminal/Hesse/p/book/9780754673881" class="ref-title" target="_blank">The City as a Terminal: The Urban Context of Logistics and Freight Transport</a></strong> Markus Hesse. Hesse frames cities as terminals within global circulation systems, providing a conceptual basis for understanding food distribution, freight movement, and logistics infrastructure as constitutive of urban life.</p>
+          <p><strong><a href="https://www.sciencedirect.com/science/article/pii/S0301421512004362" class="ref-title" target="_blank">Resilience and the Metabolism of Cities</a></strong> Joshua P. Newell and Eric W. Southworth. This work conceptualizes cities as metabolic systems, supporting the project's framing of food flows, refrigeration, and logistics as continuous infrastructural processes tied to climate resilience.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Mapping, Indices, and Interpretation</h2>
+          <p><strong><a href="https://www.guilford.com/books/How-Maps-Work/MacEachren/9781572300406" class="ref-title" target="_blank">How Maps Work: Representation, Visualization, and Design</a></strong> Alan M. MacEachren. This foundational text supports the project's use of mapping as an interpretive practice that structures understanding rather than producing neutral representations.</p>
+          <p><strong><a href="https://datafeminism.io/" class="ref-title" target="_blank">Data Feminism</a></strong> Catherine D'Ignazio and Lauren F. Klein. This work informs the project's attention to power, visibility, and the politics of data representation, particularly in mapping vulnerability and exposure.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Data Sources and Provenance</h2>
+          <p>This project draws exclusively on publicly available datasets, including <a href="https://opendata.cityofnewyork.us/" class="ref-title" target="_blank">NYC Open Data Portal</a>, <a href="https://www.census.gov/programs-surveys/acs" class="ref-title" target="_blank">American Community Survey (ACS)</a>, and publicly released health and demographic statistics. These datasets reflect administrative definitions, reporting practices, and modeling assumptions that shape how food vulnerability is measured and represented. Rather than treating data as neutral facts, the project understands them as situated indicators that require interpretation within social, infrastructural, and policy contexts.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Scripts: Use same background as other pages -->
+  <!-- Scripts -->
   <script type="module" src="js/three-background.js"></script>
   <script src="js/page.js"></script>
 </body>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Precedents & References - Low Foodprint NYC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+
+<body class="home">
+  <!-- Three.js background container -->
+  <div id="three-container"></div>
+
+  <!-- Floating icons container (empty for Precedents) -->
+  <div id="floating-icons-container"></div>
+
+  <style>
+    /* Centered scrollable overlay */
+    .refs-shell {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1100px;
+      max-height: 78vh;
+      padding: 0 12px;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .refs-container {
+      max-height: 78vh;
+      overflow: auto;
+      padding: 8px 0 4px;
+      pointer-events: auto;
+      margin: 0;
+    }
+
+    .refs-section {
+      margin-bottom: 3rem;
+    }
+
+    .refs-section h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 700;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+
+    .refs-section p {
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      color: #333;
+      margin: 0 0 1rem 0;
+      max-width: 78ch;
+    }
+
+    @media (max-width: 768px) {
+      .refs-shell {
+        padding: 0 16px;
+      }
+    }
+  </style>
+
+  <main class="home-shell" aria-label="Precedents & References">
+    <!-- Header: Title top-left -->
+    <header class="header">
+      <h1 class="title"><a href="index.html">Precedents & References</a></h1>
+    </header>
+
+    <!-- Top right: Home button -->
+    <nav class="nav-top-right">
+      <a href="index.html" class="nav-link">Home</a>
+    </nav>
+
+    <!-- Bottom left: Name -->
+    <div class="info-bottom-left">
+      <p class="info-text">Sunni Hu</p>
+    </div>
+
+    <!-- Bottom right: Credits -->
+    <footer class="info-bottom-right">
+      <p class="info-text">Columbia University GSAPP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computational Design Practice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colloquium 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fall 2025</p>
+    </footer>
+
+    <!-- Scrollable content -->
+    <section class="refs-shell">
+      <div class="refs-container">
+        <div class="refs-section">
+
+        <h2>Urban Food Systems as Infrastructure</h2>
+        <p><strong>Ericksen, Polly J.</strong> “Conceptualizing Food Systems for Global Environmental Change Research.” This work frames food systems as interconnected socio-technical systems rather than isolated sectors. It provides a foundational basis for treating food as infrastructure that links production, distribution, consumption, and environmental impact across scales.</p>
+        <p><strong>Cohen, Nevin.</strong> <em>Urban Food Systems and Governance.</em> Cohen’s work situates food systems within urban governance and infrastructure, emphasizing how distribution, regulation, and logistics shape food access and stability. This research supports the project’s shift away from access-only metrics toward structural and infrastructural analysis.</p>
+        <p><strong>Pothukuchi, Kameshwari and Jerome L. Kaufman.</strong> “The Food System: A Stranger to the Planning Field.” This seminal planning text explains why food systems have historically been excluded from infrastructure planning. It provides critical context for reframing food as a legitimate domain of urban infrastructure and climate planning.</p>
+      </div>
+
+      <div class="refs-section">
+        <h2>Climate Infrastructure and Urban Resilience</h2>
+        <p><strong>Meerow, Sara and Joshua Newell.</strong> “Urban Resilience for Whom, What, When, Where, and Why?” This work challenges narrow definitions of resilience and emphasizes distributional outcomes. It informs the project’s focus on uneven exposure and the need to examine who bears the burdens of infrastructural systems.</p>
+        <p><strong>Fainstein, Susan.</strong> <em>The Just City.</em> Fainstein’s framework foregrounds equity and justice in urban systems, supporting the project’s emphasis on how infrastructural benefits and burdens are distributed spatially rather than assumed to be neutral.</p>
+        <p><strong>Graham, Stephen and Simon Marvin.</strong> <em>Splintering Urbanism.</em> This text provides a foundational understanding of how infrastructure systems produce uneven urban geographies. It directly informs the project’s framing of food logistics and cold chain systems as infrastructures that distribute reliability and risk unevenly.</p>
+      </div>
+
+      <div class="refs-section">
+        <h2>Environmental Justice and Infrastructural Burden</h2>
+        <p><strong>Bullard, Robert D.</strong> <em>Dumping in Dixie.</em> Bullard’s work establishes environmental justice as a framework for understanding how environmental harms are systematically concentrated in marginalized communities. This informs the project’s treatment of exposure as structurally produced rather than incidental.</p>
+        <p><strong>Anguelovski, Isabelle et al.</strong> “Why Green Cities Are Not Enough.” This research emphasizes how environmental benefits and burdens are unevenly distributed even within climate-oriented urban initiatives. It supports the project’s focus on infrastructure driven exposure rather than individual behavior.</p>
+        <p><strong>Hess, David J.</strong> “Energy Transitions and Social Inequalities.” Although focused on energy, Hess’s analysis of infrastructural transitions and inequality provides a transferable framework for examining food systems as climate infrastructure with uneven impacts.</p>
+      </div>
+
+      <div class="refs-section">
+        <h2>Logistics, Cold Chain, and Urban Metabolism</h2>
+        <p><strong>Hesse, Markus.</strong> “The City as a Terminal.” Hesse’s work on logistics urbanism frames cities as nodes within global circulation systems. This directly informs the project’s focus on food logistics and distribution infrastructure as constitutive of urban life.</p>
+        <p><strong>Cidell, Julie.</strong> “Distribution Centers and the Spatial Organization of Logistics.” This research highlights how logistics infrastructure concentrates spatial impacts while serving broader urban and regional systems, supporting the project’s analysis of infrastructural dependence and exposure.</p>
+        <p><strong>Newell, Joshua P. and Eric W. Southworth.</strong> “Resilience and the Metabolism of Cities.” This work conceptualizes cities as metabolic systems, providing a lens for understanding food flows, refrigeration, and distribution as continuous infrastructural processes.</p>
+      </div>
+
+      <div class="refs-section">
+        <h2>Mapping, Indices, and Interpretive Visualization</h2>
+        <p><strong>Kwan, Mei-Po.</strong> “The Uncertain Geographic Context Problem.” Kwan’s work cautions against simplistic spatial interpretations and informs the project’s careful use of indices as exploratory and diagnostic tools rather than definitive metrics.</p>
+        <p><strong>MacEachren, Alan M.</strong> <em>How Maps Work.</em> This foundational text supports the project’s use of mapping as an interpretive practice that structures understanding rather than merely displaying data.</p>
+        <p><strong>D’Ignazio, Catherine and Lauren Klein.</strong> <em>Data Feminism.</em> This work informs the project’s attention to power, visibility, and the politics of data representation, particularly in mapping vulnerability and exposure.</p>
+      </div>
+
+      <div class="refs-section">
+        <h2>Data Sources and Provenance</h2>
+        <p>This project draws on publicly available datasets from New York City Open Data, the American Community Survey, and public health and environmental indicators where available. These datasets reflect administrative definitions, reporting practices, and modeling assumptions that shape how food vulnerability is measured and represented. Rather than treating data as neutral facts, the project understands them as situated indicators that require interpretation within social, infrastructural, and policy contexts.</p>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="js/three-background.js"></script>
+  <script src="js/page.js"></script>
+</body>
+</html>
