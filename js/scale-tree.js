@@ -12,7 +12,7 @@
     minHeight: 480,
     dx: 24,
     dy: 240,
-    leftPad: 178,  // Adjusted to center the graph horizontally
+    leftPad: 180,  // Adjusted for better positioning
     transitionDuration: 360,
     labelPadX: 10,
     labelPadY: 8,
@@ -31,7 +31,7 @@
   };
 
   const rootData = {
-    name: "Scale & Translation:\nFrom Systems → Behavior", // Diagram caption, not primary node
+    name: "Multi-Scalar Framing:\nFood Systems, Infrastructure,\nand Urban Life", // Diagram caption, not primary node
     children: [
       {
         name: "Global food–climate\nsystems",
@@ -50,7 +50,7 @@
         ]
       },
       {
-        name: "Neighborhood-level\nvulnerability",
+        name: "Neighborhood-level\nexposure and vulnerability",
         children: [
           { name: "System: access + affordability + storage capacity" },
           { name: "Signals: poverty, low-storage proxies, food availability" },
@@ -58,15 +58,15 @@
         ]
       },
       {
-        name: "Behavioral interface", // Core intervention - single line for emphasis
+        name: "Interpretive Interface", // Core intervention - single line for emphasis
         children: [
-          { name: "Input: translate data → choices" },
-          { name: "Mechanism: feedback, substitution pathways" },
-          { name: "Output: actionable suggestions + visibility" }
+          { name: "Signal: infrastructural intensity, flows" },
+          { name: "Mechanism: comparison, spatial framing" },
+          { name: "Output: visibility + interpretability" }
         ]
       },
       {
-        name: "Everyday eating\nbehavior",
+        name: "Everyday food\npractices",
         children: [
           { name: "Unit: meals, purchases, routines" },
           { name: "Constraints: time, budget, habit, access" },
@@ -83,7 +83,7 @@
     .y((d) => d.x);
 
   function isInterfaceNode(d) {
-    return /Behavioral\s*interface/i.test(String(d.data.name || ""));
+    return /Interpretive\s*Interface/i.test(String(d.data.name || ""));
   }
 
   // Ancestry helpers for hover interaction
