@@ -19,7 +19,7 @@
   </script>
 </head>
 
-<body class="home">
+<body class="home methods-scrollable">
   <!-- Three.js background container -->
   <div id="three-container"></div>
 
@@ -37,10 +37,13 @@
   </nav>
 
   <!-- Methods layout -->
-  <main class="home-shell" aria-label="Project Methods" style="position: relative; min-height: 100vh;">
+  <main class="home-shell" aria-label="Project Methods" style="padding-top: 90px; padding-bottom: 90px; display: flex; flex-direction: column; align-items: center; gap: 36px;">
+    <section style="text-align: center; max-width: 960px;">
+      <h2 style="margin: 0; font-size: clamp(20px, 3vw, 36px); letter-spacing: -0.01em;"></h2>
+      <p style="margin: 0; color: #333; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.8;"></p>
+    </section>
 
-    <section style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: min(1100px, 92vw); max-height: 78vh; padding: 0 12px; pointer-events: none;">
-      <div style="max-height: 78vh; overflow: auto; padding: 8px 0 4px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: start; pointer-events: auto;">
+    <section style="width: min(1100px, 92vw); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: start;">
       <article style="background: rgba(255,255,255,0.92); border-radius: 12px; padding: 20px 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.06); display: flex; flex-direction: column; min-height: 420px; max-height: 520px;">
         <h3 style="margin: 0 0 6px; font-size: clamp(16px, 1.6vw, 20px);">1. Multi-Scalar Spatial Analysis</h3>
         <div style="flex: 1; min-height: 0; overflow: auto; padding-right: 4px;">
@@ -85,7 +88,6 @@
           <p style="margin: 4px 0 0; color: #333; line-height: 1.75; font-size: clamp(12px, 1.2vw, 16px);">Treats prototyping as a form of inquiry that examines how visual structure and comparison shape understanding of urban climate infrastructure.</p>
         </div>
       </article>
-        </div>
       </section>
   </main>
 
