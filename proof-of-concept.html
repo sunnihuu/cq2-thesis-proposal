@@ -16,16 +16,25 @@
     body.page-scroll .home-shell { height: auto; min-height: 100vh; padding-top: 140px; padding-bottom: 140px; }
 
     .poc-shell {
-      position: relative;
-      width: min(1100px, 92vw);
-      margin: 0 auto;
-      padding: 0 12px;
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: none;
+      padding: 0 32px;
       z-index: 15;
+      overflow: auto;
+      max-height: 80vh;
     }
 
     .poc-container {
       padding: 8px 0 4px;
-      margin: 0;
+      margin: 0 auto;
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      color: #333;
+      max-width: 700px;
     }
 
     /* Section spacing and typography */
@@ -34,10 +43,9 @@
     }
 
     .poc-section h2 {
-      font-size: clamp(20px, 3vw, 32px);
-      font-weight: 700;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: -0.01em;
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 600;
+      margin: 1.5rem 0 0.8rem 0;
       color: var(--fg);
     }
 

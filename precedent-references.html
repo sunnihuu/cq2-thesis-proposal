@@ -33,19 +33,22 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90vw;
-      max-width: 1100px;
-      max-height: 78vh;
-      padding: 0 12px;
+      max-width: none;
+      padding: 0 32px;
       pointer-events: none;
       z-index: 15;
+      overflow: auto;
+      max-height: 80vh;
     }
 
     .refs-container {
-      max-height: 78vh;
-      overflow: auto;
       padding: 8px 0 4px;
       pointer-events: auto;
-      margin: 0;
+      margin: 0 auto;
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      color: #333;
+      max-width: 700px;
     }
 
     .refs-section {
@@ -53,10 +56,9 @@
     }
 
     .refs-section h2 {
-      font-size: clamp(20px, 3vw, 32px);
-      font-weight: 700;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: -0.01em;
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 600;
+      margin: 1.5rem 0 0.8rem 0;
       color: var(--fg);
     }
 
@@ -66,6 +68,18 @@
       color: #333;
       margin: 0 0 1rem 0;
       max-width: 78ch;
+    }
+
+    .ref-list {
+      margin: 0 0 1rem 1.25rem;
+      padding: 0;
+    }
+
+    .ref-list li {
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 0.5rem;
     }
 
     .ref-title {
@@ -112,37 +126,46 @@
       <div class="refs-container">
         <div class="refs-section">
           <h2>Urban Food Systems as Infrastructure</h2>
-          <p><strong><a href="https://journals.sagepub.com/doi/10.1068/a3343" class="ref-title" target="_blank">The Food System: A Stranger to the Planning Field</a></strong> Kameshwari Pothukuchi and Jerome L. Kaufman. This foundational planning text explains why food systems have historically been excluded from urban infrastructure and planning discourse. It provides critical grounding for reframing food systems as legitimate objects of urban and climate planning.</p>
-          <p><strong><a href="https://www.routledge.com/Urban-Food-Systems-Governance/Cohen/p/book/9781138497530" class="ref-title" target="_blank">Urban Food Systems Governance</a></strong> Nevin Cohen. Cohen's work situates food systems within urban governance, emphasizing distribution, regulation, and infrastructure rather than access alone. This supports the project's shift toward structural and infrastructural analysis.</p>
+          <p><strong><a href="The_Food_System_A_Stranger_to_the_Planning_Field.pdf" class="ref-title" target="_blank">The Food System: A Stranger to the Planning Field</a></strong> Kameshwari Pothukuchi and Jerome L. Kaufman. This foundational planning text explains why food systems have historically been excluded from urban infrastructure and planning discourse. It provides critical grounding for reframing food systems as legitimate objects of urban and climate planning.</p>
+          <p><strong><a href="https://www.nyc.gov/site/foodpolicy/reports-and-data/foodclimatestrategy.page" class="ref-title" target="_blank">NYC Food and Climate Strategy</a></strong> NYC Mayor's Office of Food Policy. The Strategy formally recognizes food systems as central to New York City's climate response, linking consumption, waste, distribution, and storage to mitigation, adaptation, and resilience goals while prioritizing communities facing disproportionate climate and environmental burdens. This project builds on that framing by examining how these goals materialize unevenly at the neighborhood level through infrastructure dependence and exposure.</p>
         </div>
 
         <div class="refs-section">
           <h2>Climate Infrastructure and Urban Resilience</h2>
-          <p><strong><a href="https://www.routledge.com/Splintering-Urbanism/Graham-Marvin/p/book/9780415206402" class="ref-title" target="_blank">Splintering Urbanism: Networked Infrastructures, Technological Mobilities and the Urban Condition</a></strong> Stephen Graham and Simon Marvin. This text provides a foundational framework for understanding how infrastructure systems distribute reliability and risk unevenly across cities. It directly informs the project's analysis of food logistics and cold chain systems as infrastructures that produce uneven exposure.</p>
-          <p><strong><a href="https://www.cornellpress.cornell.edu/book/9780801474995/the-just-city/" class="ref-title" target="_blank">The Just City</a></strong> Susan S. Fainstein. Fainstein's framework foregrounds equity and justice in urban systems, supporting the project's emphasis on how infrastructural benefits and burdens are distributed spatially rather than assumed to be neutral.</p>
+          <p><strong><a href="https://www.google.com/search?sca_esv=04c18b188c04e8df&rlz=1C5CHFA_enUS1023US1027&sxsrf=ANbL-n5PHSZ1a3XNJCHZmbXpTa4jAi4IYQ:1769393461468&q=Splintering+Urbanism:+Networked+Infrastructures,+Technological+Mobilities+and+the+Urban+Condition&si=AL3DRZGzed_qbdr7bllYQYsaUXeuIcnEI2GUk45PAjv1vqqZiLucS7CECHwbjHKvUvrK7245QkeYOAUyXwbDP9pOxwSbK7HsTTAhJwANaDS8K8REXauvuRhpUDDMG7N4spFOU388gXquDO-KR2ejwcyOSu1dYAKG7x7frkmsbDSAAluNaCMgN3jBoV9EuA3WzNloKpnKBa2iNMK5R6Vyl4a-dJn95A34NkNVscktpj7goj9TBNUWh-RKfqTt7qkFZoKeg2PbGEH_&sa=X&ved=2ahUKEwiblvSlkKiSAxV-GVkFHQlVLeYQ_coHegQIDBAB&ictx=0&biw=1257&bih=772&dpr=2&aic=0" class="ref-title" target="_blank">Splintering Urbanism: Networked Infrastructures, Technological Mobilities and the Urban Condition</a></strong> Stephen Graham and Simon Marvin. This text provides a foundational framework for understanding how infrastructure systems distribute reliability and risk unevenly across cities. It directly informs the project's analysis of food logistics and cold chain systems as infrastructures that produce uneven exposure.</p>
+          <p><strong><a href="https://www.cornellpress.cornell.edu/book/9780801446559/the-just-city/#bookTabs=1" class="ref-title" target="_blank">The Just City</a></strong> Susan S. Fainstein. Fainstein's framework foregrounds equity and justice in urban systems, supporting the project's emphasis on how infrastructural benefits and burdens are distributed spatially rather than assumed to be neutral.</p>
         </div>
 
         <div class="refs-section">
           <h2>Environmental Justice and Infrastructural Burden</h2>
           <p><strong><a href="https://www.routledge.com/Dumping-in-Dixie/Bullard/p/book/9780813367927" class="ref-title" target="_blank">Dumping in Dixie: Race, Class, and Environmental Quality</a></strong> Robert D. Bullard. Bullard's work establishes environmental justice as a framework for understanding how environmental harms are systematically concentrated in marginalized communities. This informs the project's treatment of neighborhood exposure as structurally produced.</p>
-          <p><strong><a href="https://www.politybooks.com/bookdetail/?isbn=9781509543722" class="ref-title" target="_blank">Why Green Cities Are Not Enough</a></strong> Isabelle Anguelovski et al. This research highlights how climate and sustainability initiatives can reproduce uneven outcomes, reinforcing the need to examine who bears the burdens of climate-related infrastructure.</p>
         </div>
 
         <div class="refs-section">
           <h2>Logistics, Distribution, and Urban Metabolism</h2>
-          <p><strong><a href="https://www.routledge.com/The-City-as-a-Terminal/Hesse/p/book/9780754673881" class="ref-title" target="_blank">The City as a Terminal: The Urban Context of Logistics and Freight Transport</a></strong> Markus Hesse. Hesse frames cities as terminals within global circulation systems, providing a conceptual basis for understanding food distribution, freight movement, and logistics infrastructure as constitutive of urban life.</p>
-          <p><strong><a href="https://www.sciencedirect.com/science/article/pii/S0301421512004362" class="ref-title" target="_blank">Resilience and the Metabolism of Cities</a></strong> Joshua P. Newell and Eric W. Southworth. This work conceptualizes cities as metabolic systems, supporting the project's framing of food flows, refrigeration, and logistics as continuous infrastructural processes tied to climate resilience.</p>
+          <p><strong><a href="https://books.google.com/books/about/The_City_as_a_Terminal.html?id=VDmlTTYGdoQC" class="ref-title" target="_blank">The City as a Terminal: The Urban Context of Logistics and Freight Transport</a></strong> Markus Hesse. Hesse frames cities as terminals within global circulation systems, providing a conceptual basis for understanding food distribution, freight movement, and logistics infrastructure as constitutive of urban life.</p>
+        </div>
+
+        <div class="refs-section">
+          <h2>Hunts Point Planning and Infrastructure Context</h2>
+          <p><strong><a href="https://edc.nyc/sites/default/files/2023-09/Hunts-Point-Forward-Vision-Plan-Web-English.pdf" class="ref-title" target="_blank">Hunts Point Forward Vision Plan</a></strong> <a href="https://huntspointforward.nyc/" class="ref-title" target="_blank">HuntsPointForward.nyc</a>. NYC Economic Development Corporation. This plan details municipal priorities for infrastructure, logistics, land use, and economic development in Hunts Point, one of New York City's most critical food distribution districts.</p>
+          
+          <p><strong><a href="https://edc.nyc/project/hunts-point-peninsula" class="ref-title" target="_blank">Hunts Point Peninsula Project</a></strong> NYC Economic Development Corporation. This project documents ongoing and proposed investments in the Hunts Point Peninsula, reinforcing the area's role as a hub of food distribution, logistics, and industrial infrastructure within the city.</p>
         </div>
 
         <div class="refs-section">
           <h2>Mapping, Indices, and Interpretation</h2>
-          <p><strong><a href="https://www.guilford.com/books/How-Maps-Work/MacEachren/9781572300406" class="ref-title" target="_blank">How Maps Work: Representation, Visualization, and Design</a></strong> Alan M. MacEachren. This foundational text supports the project's use of mapping as an interpretive practice that structures understanding rather than producing neutral representations.</p>
           <p><strong><a href="https://datafeminism.io/" class="ref-title" target="_blank">Data Feminism</a></strong> Catherine D'Ignazio and Lauren F. Klein. This work informs the project's attention to power, visibility, and the politics of data representation, particularly in mapping vulnerability and exposure.</p>
         </div>
 
         <div class="refs-section">
           <h2>Data Sources and Provenance</h2>
-          <p>This project draws exclusively on publicly available datasets, including <a href="https://opendata.cityofnewyork.us/" class="ref-title" target="_blank">NYC Open Data Portal</a>, <a href="https://www.census.gov/programs-surveys/acs" class="ref-title" target="_blank">American Community Survey (ACS)</a>, and publicly released health and demographic statistics. These datasets reflect administrative definitions, reporting practices, and modeling assumptions that shape how food vulnerability is measured and represented. Rather than treating data as neutral facts, the project understands them as situated indicators that require interpretation within social, infrastructural, and policy contexts.</p>
+          <ul class="ref-list">
+            <li><a href="https://opendata.cityofnewyork.us/" class="ref-title" target="_blank">NYC Open Data</a></li>
+            <li><a href="https://www.census.gov/programs-surveys/acs" class="ref-title" target="_blank">American Community Survey</a></li>
+            <li>Publicly released health and demographic statistics</li>
+          </ul>
+          <p>Publicly released health and demographic statistics are also used where available. These datasets reflect administrative definitions, reporting practices, and modeling assumptions that shape how food vulnerability is measured and represented. Rather than treating data as neutral facts, the project understands them as situated indicators that require interpretation within social, infrastructural, and policy contexts.</p>
         </div>
       </div>
     </section>
